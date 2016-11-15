@@ -16,6 +16,31 @@ MIDI_CREATE_INSTANCE(SoftwareSerialIn, mSerial, midiIn);
 byte selectedChannel = 3;
 
 
+void sendByte(byte data) {
+  
+  digitalWrite(READY, HIGH);
+  
+  byte mask = B1000000;
+  
+  for (int i=0; i<8; i++) {
+    while (digitalRead(CLOCK_IN) == LOW) {
+      delayMicroseconds(1);
+    }
+    if (data & mask) {
+      digitalWrite(DATA_OUT, HIGH);
+    } else {
+      digitalWrite(DATA_OUT, LOW);
+    }
+    while (digitalRead(CLOCK_IN) == HIGH) {
+      delayMicroseconds(1);
+    }
+    mask >>= 1;
+  }
+  
+  digitalWrite(READY, LOW);
+  
+}
+
 void handleSystemExclusive(byte *message, unsigned size) {
 
   if (message[1] == 0x77) // manufacturer ID
