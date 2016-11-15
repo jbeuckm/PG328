@@ -1,5 +1,4 @@
 #include <EEPROM.h>
-#include <SoftwareSerialIn.h>
 #include <MIDI.h>
 
 #define CTRL_RESET 121
@@ -10,8 +9,7 @@
 
 #define MIDI_CHANNEL_ADDRESS 0
 
-SoftwareSerialIn mSerial(5);
-MIDI_CREATE_INSTANCE(SoftwareSerialIn, mSerial, midiIn);
+MIDI_CREATE_DEFAULT_INSTANCE();
 
 byte selectedChannel = 3;
 
@@ -48,7 +46,7 @@ void handleSystemExclusive(byte *message, unsigned size) {
   if (message[3] == 0) {  // device ID
     selectedChannel = message[4] % 17;
     EEPROM.write(MIDI_CHANNEL_ADDRESS, selectedChannel);
-    midiIn.begin(selectedChannel);
+    MIDI.begin(selectedChannel);
     
   }
 }
@@ -80,13 +78,13 @@ void setup() {
     EEPROM.write(MIDI_CHANNEL_ADDRESS, selectedChannel);
   }
 
-  midiIn.setHandleSystemExclusive(handleSystemExclusive);
-  midiIn.setHandleControlChange(handleControlChange);
+  MIDI.setHandleSystemExclusive(handleSystemExclusive);
+  MIDI.setHandleControlChange(handleControlChange);
   
-  midiIn.begin(selectedChannel);
+  MIDI.begin(selectedChannel);
 }
 
 void loop() {
-  midiIn.read();  
+  MIDI.read();
 }
 
