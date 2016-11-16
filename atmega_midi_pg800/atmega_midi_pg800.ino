@@ -3,9 +3,9 @@
 
 #define CTRL_RESET 121
 
-#define READY 0
-#define CLOCK_IN 1
-#define DATA_OUT 2
+#define READY 10
+#define CLOCK_IN 8
+#define DATA_OUT 9
 
 #define MIDI_CHANNEL_ADDRESS 0
 

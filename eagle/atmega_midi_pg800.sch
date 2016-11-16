@@ -14894,7 +14894,7 @@ http://www.fairchildsemi.com/ds/LM/LM7805.pdf</description>
 </classes>
 <parts>
 <part name="U2" library="SparkFun-DigitalIC" deviceset="ATMEGA328P_PDIP" device=""/>
-<part name="Q1" library="crystal" deviceset="CRYSTAL" device="HC49S"/>
+<part name="Q1" library="crystal" deviceset="CRYSTAL" device="HC49S" value="16.000Mhz"/>
 <part name="C1" library="rcl" deviceset="C-US" device="025-040X050" value="27pF"/>
 <part name="C2" library="rcl" deviceset="C-US" device="025-040X050" value="27pF"/>
 <part name="R1" library="rcl" deviceset="R-US_" device="0207/7" value="10k"/>
@@ -14973,7 +14973,7 @@ http://www.fairchildsemi.com/ds/LM/LM7805.pdf</description>
 <instance part="GND3" gate="1" x="58.42" y="20.32"/>
 <instance part="C4" gate="G$1" x="91.44" y="53.34"/>
 <instance part="C5" gate="G$1" x="60.96" y="53.34"/>
-<instance part="P+4" gate="1" x="60.96" y="73.66"/>
+<instance part="P+4" gate="1" x="60.96" y="66.04"/>
 <instance part="GND4" gate="1" x="60.96" y="43.18"/>
 <instance part="GND5" gate="1" x="91.44" y="43.18"/>
 <instance part="GND6" gate="1" x="76.2" y="43.18"/>
@@ -15094,7 +15094,7 @@ http://www.fairchildsemi.com/ds/LM/LM7805.pdf</description>
 <wire x1="66.04" y1="60.96" x2="60.96" y2="60.96" width="0.1524" layer="91"/>
 <wire x1="60.96" y1="60.96" x2="60.96" y2="55.88" width="0.1524" layer="91"/>
 <pinref part="P+4" gate="1" pin="+5V"/>
-<wire x1="60.96" y1="71.12" x2="60.96" y2="60.96" width="0.1524" layer="91"/>
+<wire x1="60.96" y1="63.5" x2="60.96" y2="60.96" width="0.1524" layer="91"/>
 <junction x="60.96" y="60.96"/>
 </segment>
 <segment>
