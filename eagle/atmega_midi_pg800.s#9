@@ -15188,32 +15188,32 @@ http://www.fairchildsemi.com/ds/LM/LM7805.pdf</description>
 <junction x="91.44" y="60.96"/>
 </segment>
 </net>
+<net name="N$11" class="0">
+<segment>
+<pinref part="X1" gate="G$1" pin="5"/>
+<wire x1="66.04" y1="25.4" x2="40.64" y2="25.4" width="0.1524" layer="91"/>
+<pinref part="U2" gate="G$1" pin="PB1(OC1A)"/>
+</segment>
+</net>
 <net name="N$9" class="0">
 <segment>
-<pinref part="X1" gate="G$1" pin="1"/>
-<wire x1="96.52" y1="25.4" x2="96.52" y2="38.1" width="0.1524" layer="91"/>
-<wire x1="96.52" y1="38.1" x2="45.72" y2="38.1" width="0.1524" layer="91"/>
-<wire x1="45.72" y1="38.1" x2="45.72" y2="27.94" width="0.1524" layer="91"/>
 <pinref part="U2" gate="G$1" pin="PB0(ICP)"/>
-<wire x1="45.72" y1="27.94" x2="40.64" y2="27.94" width="0.1524" layer="91"/>
+<wire x1="40.64" y1="27.94" x2="45.72" y2="27.94" width="0.1524" layer="91"/>
+<wire x1="45.72" y1="27.94" x2="45.72" y2="30.48" width="0.1524" layer="91"/>
+<pinref part="X1" gate="G$1" pin="6"/>
+<wire x1="45.72" y1="30.48" x2="66.04" y2="30.48" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$10" class="0">
 <segment>
-<pinref part="U2" gate="G$1" pin="PB1(OC1A)"/>
-<wire x1="40.64" y1="25.4" x2="48.26" y2="25.4" width="0.1524" layer="91"/>
-<wire x1="48.26" y1="25.4" x2="48.26" y2="30.48" width="0.1524" layer="91"/>
-<pinref part="X1" gate="G$1" pin="6"/>
-<wire x1="48.26" y1="30.48" x2="66.04" y2="30.48" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$11" class="0">
-<segment>
-<pinref part="X1" gate="G$1" pin="5"/>
-<wire x1="66.04" y1="25.4" x2="50.8" y2="25.4" width="0.1524" layer="91"/>
-<wire x1="50.8" y1="25.4" x2="50.8" y2="22.86" width="0.1524" layer="91"/>
+<pinref part="X1" gate="G$1" pin="1"/>
+<wire x1="96.52" y1="25.4" x2="96.52" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="96.52" y1="38.1" x2="55.88" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="55.88" y1="38.1" x2="55.88" y2="27.94" width="0.1524" layer="91"/>
+<wire x1="55.88" y1="27.94" x2="48.26" y2="27.94" width="0.1524" layer="91"/>
 <pinref part="U2" gate="G$1" pin="PB2(SS/OC1B)"/>
-<wire x1="50.8" y1="22.86" x2="40.64" y2="22.86" width="0.1524" layer="91"/>
+<wire x1="40.64" y1="22.86" x2="48.26" y2="22.86" width="0.1524" layer="91"/>
+<wire x1="48.26" y1="22.86" x2="48.26" y2="27.94" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

@@ -15571,7 +15571,7 @@ Standard 4-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 <instance part="RESET" gate="-1" x="5.08" y="91.44" rot="MR180"/>
 <instance part="RESET" gate="-2" x="-2.54" y="91.44" rot="MR0"/>
 <instance part="DISPLAY" gate="G$1" x="66.04" y="63.5" rot="R180"/>
-<instance part="P+5" gate="1" x="55.88" y="73.66"/>
+<instance part="P+5" gate="1" x="55.88" y="71.12"/>
 <instance part="GND7" gate="1" x="55.88" y="53.34"/>
 </instances>
 <busses>
@@ -15684,7 +15684,7 @@ Standard 4-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 <segment>
 <pinref part="DISPLAY" gate="G$1" pin="1"/>
 <pinref part="P+5" gate="1" pin="+5V"/>
-<wire x1="55.88" y1="71.12" x2="55.88" y2="66.04" width="0.1524" layer="91"/>
+<wire x1="55.88" y1="68.58" x2="55.88" y2="66.04" width="0.1524" layer="91"/>
 <wire x1="55.88" y1="66.04" x2="60.96" y2="66.04" width="0.1524" layer="91"/>
 </segment>
 </net>
