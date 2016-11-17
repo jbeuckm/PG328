@@ -16077,11 +16077,11 @@ Based on the following sources:
 </net>
 <net name="N$2" class="0">
 <segment>
-<wire x1="81.28" y1="99.06" x2="81.28" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="68.58" y1="99.06" x2="68.58" y2="73.66" width="0.1524" layer="91"/>
 <pinref part="U2" gate="G$1" pin="PC0(ADC0)"/>
-<wire x1="81.28" y1="73.66" x2="40.64" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="68.58" y1="73.66" x2="40.64" y2="73.66" width="0.1524" layer="91"/>
 <pinref part="IC4" gate="A" pin="X"/>
-<wire x1="81.28" y1="99.06" x2="185.42" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="68.58" y1="99.06" x2="185.42" y2="99.06" width="0.1524" layer="91"/>
 <wire x1="185.42" y1="99.06" x2="185.42" y2="71.12" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -16089,19 +16089,19 @@ Based on the following sources:
 <segment>
 <pinref part="IC3" gate="A" pin="X"/>
 <wire x1="152.4" y1="71.12" x2="152.4" y2="96.52" width="0.1524" layer="91"/>
-<wire x1="152.4" y1="96.52" x2="83.82" y2="96.52" width="0.1524" layer="91"/>
-<wire x1="83.82" y1="96.52" x2="83.82" y2="71.12" width="0.1524" layer="91"/>
+<wire x1="152.4" y1="96.52" x2="71.12" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="71.12" y1="96.52" x2="71.12" y2="71.12" width="0.1524" layer="91"/>
 <pinref part="U2" gate="G$1" pin="PC1(ADC1)"/>
-<wire x1="83.82" y1="71.12" x2="40.64" y2="71.12" width="0.1524" layer="91"/>
+<wire x1="71.12" y1="71.12" x2="40.64" y2="71.12" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$15" class="0">
 <segment>
 <pinref part="U2" gate="G$1" pin="PC2(ADC2)"/>
-<wire x1="40.64" y1="68.58" x2="86.36" y2="68.58" width="0.1524" layer="91"/>
-<wire x1="86.36" y1="68.58" x2="86.36" y2="93.98" width="0.1524" layer="91"/>
+<wire x1="40.64" y1="68.58" x2="73.66" y2="68.58" width="0.1524" layer="91"/>
+<wire x1="73.66" y1="68.58" x2="73.66" y2="93.98" width="0.1524" layer="91"/>
 <pinref part="IC2" gate="A" pin="X"/>
-<wire x1="86.36" y1="93.98" x2="119.38" y2="93.98" width="0.1524" layer="91"/>
+<wire x1="73.66" y1="93.98" x2="119.38" y2="93.98" width="0.1524" layer="91"/>
 <wire x1="119.38" y1="93.98" x2="119.38" y2="71.12" width="0.1524" layer="91"/>
 </segment>
 </net>

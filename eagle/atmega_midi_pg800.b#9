@@ -1974,7 +1974,7 @@ design rules under a new name.</description>
 <element name="C2" library="rcl" package="C025-040X050" value="27pF" x="69.088" y="24.13" rot="R90"/>
 <element name="C3" library="rcl" package="C025-030X050" value=".1uF" x="30.48" y="34.544"/>
 <element name="D1" library="SparkFun-DiscreteSemi" package="DIODE-1N4148" value="" x="4.445" y="26.035" rot="R90"/>
-<element name="Q1" library="crystal" package="HC49/S" value="" x="60.96" y="25.4" rot="R180">
+<element name="Q1" library="crystal" package="HC49/S" value="16.000Mhz" x="60.96" y="25.4" rot="R180">
 <attribute name="OC_NEWARK" value="unknown" x="60.96" y="25.4" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MPN" value="" x="60.96" y="25.4" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="" x="60.96" y="25.4" size="1.778" layer="27" rot="R180" display="off"/>
