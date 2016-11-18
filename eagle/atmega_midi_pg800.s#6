@@ -15760,7 +15760,6 @@ Based on the following sources:
 <part name="IC2" library="40xx" deviceset="4067" device="N"/>
 <part name="IC3" library="40xx" deviceset="4067" device="N"/>
 <part name="IC4" library="40xx" deviceset="4067" device="N"/>
-<part name="IN" library="con-molex" deviceset="22-23-2041" device=""/>
 <part name="IN1" library="con-molex" deviceset="22-23-2041" device=""/>
 <part name="IN2" library="con-molex" deviceset="22-23-2041" device=""/>
 <part name="IN3" library="con-molex" deviceset="22-23-2041" device=""/>
@@ -15827,10 +15826,6 @@ Based on the following sources:
 <instance part="IC2" gate="A" x="106.68" y="60.96"/>
 <instance part="IC3" gate="A" x="139.7" y="60.96"/>
 <instance part="IC4" gate="A" x="172.72" y="60.96"/>
-<instance part="IN" gate="-1" x="127" y="124.46" rot="MR0"/>
-<instance part="IN" gate="-2" x="127" y="121.92" rot="MR0"/>
-<instance part="IN" gate="-3" x="127" y="119.38" rot="MR0"/>
-<instance part="IN" gate="-4" x="127" y="116.84" rot="MR0"/>
 <instance part="IN1" gate="-1" x="91.44" y="71.12" rot="MR0"/>
 <instance part="IN1" gate="-2" x="91.44" y="68.58" rot="MR0"/>
 <instance part="IN1" gate="-3" x="91.44" y="66.04" rot="MR0"/>

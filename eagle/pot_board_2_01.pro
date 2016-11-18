@@ -2,26 +2,24 @@ EAGLE AutoRouter Statistics:
 
 Job           : /Users/joebeuckman/Dropbox/CAM/eurorack/atmega_midi_pg800/eagle/pot_board_2.brd
 
-Start at      : 22:12:00 (11/16/16)
-End at        : 22:13:02 (11/16/16)
-Elapsed time  : 00:01:00
+Start at      : 22:25:35 (11/16/16)
+End at        : 22:25:44 (11/16/16)
+Elapsed time  : 00:00:08
 
 Signals       :    24   RoutingGrid: 25 mil  Layers: 1
-Connections   :    55   predefined:  0 ( 0 Vias )
+Connections   :    31   predefined:  0 ( 0 Vias )
 
-Router memory :   44756
+Router memory :   44220
 
-Job has been interrupted!
+Passname          :     Route Optimize1 Optimize2 Optimize3 Optimize4
 
-Passname          :    Busses     Route
+Time per pass     :  00:00:08  00:00:00  00:00:00  00:00:00  00:00:00
+Number of Ripups  :       256         0         0         0         0
+max. Level        :         5         0         0         0         0
+max. Total        :        22         0         0         0         0
 
-Time per pass     :  00:00:00  00:01:00
-Number of Ripups  :         0      1161
-max. Level        :         0         4
-max. Total        :         0        35
-
-Routed            :        12        38
-Vias              :         0         0
-Resolution        :    21.8 %    69.1 %
+Routed            :        29        29        29        29        29
+Vias              :         0         0         0         0         0
+Resolution        :    93.5 %    93.5 %    93.5 %    93.5 %    93.5 %
 
 Final             : 

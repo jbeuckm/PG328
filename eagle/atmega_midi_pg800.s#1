@@ -15778,6 +15778,7 @@ Based on the following sources:
 <part name="GND8" library="supply1" deviceset="GND" device=""/>
 <part name="GND10" library="supply1" deviceset="GND" device=""/>
 <part name="GND11" library="supply1" deviceset="GND" device=""/>
+<part name="IN16" library="con-molex" deviceset="22-23-2041" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -15895,6 +15896,10 @@ Based on the following sources:
 <instance part="GND8" gate="1" x="124.46" y="91.44"/>
 <instance part="GND10" gate="1" x="86.36" y="86.36"/>
 <instance part="GND11" gate="1" x="157.48" y="86.36"/>
+<instance part="IN16" gate="-1" x="43.18" y="27.94"/>
+<instance part="IN16" gate="-2" x="43.18" y="25.4"/>
+<instance part="IN16" gate="-3" x="43.18" y="22.86"/>
+<instance part="IN16" gate="-4" x="43.18" y="20.32"/>
 </instances>
 <busses>
 </busses>
@@ -16249,18 +16254,6 @@ Based on the following sources:
 <wire x1="76.2" y1="73.66" x2="40.64" y2="73.66" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$16" class="0">
-<segment>
-<pinref part="U2" gate="G$1" pin="PB0(ICP)"/>
-<wire x1="40.64" y1="27.94" x2="76.2" y2="27.94" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$17" class="0">
-<segment>
-<pinref part="U2" gate="G$1" pin="PB1(OC1A)"/>
-<wire x1="78.74" y1="25.4" x2="40.64" y2="25.4" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="N$11" class="0">
 <segment>
 <pinref part="X1" gate="G$1" pin="5"/>
@@ -16558,18 +16551,6 @@ Based on the following sources:
 <pinref part="IC4" gate="A" pin="X15"/>
 </segment>
 </net>
-<net name="N$77" class="0">
-<segment>
-<pinref part="U2" gate="G$1" pin="PB2(SS/OC1B)"/>
-<wire x1="40.64" y1="22.86" x2="81.28" y2="22.86" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$78" class="0">
-<segment>
-<pinref part="U2" gate="G$1" pin="PB3(MOSI/OC2)"/>
-<wire x1="40.64" y1="20.32" x2="83.82" y2="20.32" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="N$18" class="0">
 <segment>
 <pinref part="IN14" gate="-1" pin="S"/>
@@ -16648,6 +16629,30 @@ Based on the following sources:
 <segment>
 <pinref part="IC2" gate="A" pin="A"/>
 <pinref part="IN13" gate="-1" pin="S"/>
+</segment>
+</net>
+<net name="N$16" class="0">
+<segment>
+<pinref part="U2" gate="G$1" pin="PB0(ICP)"/>
+<pinref part="IN16" gate="-1" pin="S"/>
+</segment>
+</net>
+<net name="N$17" class="0">
+<segment>
+<pinref part="U2" gate="G$1" pin="PB1(OC1A)"/>
+<pinref part="IN16" gate="-2" pin="S"/>
+</segment>
+</net>
+<net name="N$77" class="0">
+<segment>
+<pinref part="U2" gate="G$1" pin="PB2(SS/OC1B)"/>
+<pinref part="IN16" gate="-3" pin="S"/>
+</segment>
+</net>
+<net name="N$78" class="0">
+<segment>
+<pinref part="U2" gate="G$1" pin="PB3(MOSI/OC2)"/>
+<pinref part="IN16" gate="-4" pin="S"/>
 </segment>
 </net>
 </nets>

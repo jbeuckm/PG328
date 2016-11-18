@@ -16574,48 +16574,56 @@ Based on the following sources:
 <segment>
 <pinref part="IN14" gate="-1" pin="S"/>
 <junction x="127" y="83.82"/>
+<pinref part="IC3" gate="A" pin="A"/>
 </segment>
 </net>
 <net name="N$19" class="0">
 <segment>
 <pinref part="IN14" gate="-2" pin="S"/>
 <junction x="127" y="81.28"/>
+<pinref part="IC3" gate="A" pin="B"/>
 </segment>
 </net>
 <net name="N$71" class="0">
 <segment>
 <pinref part="IN14" gate="-3" pin="S"/>
 <junction x="127" y="78.74"/>
+<pinref part="IC3" gate="A" pin="C"/>
 </segment>
 </net>
 <net name="N$72" class="0">
 <segment>
 <pinref part="IN14" gate="-4" pin="S"/>
 <junction x="127" y="76.2"/>
+<pinref part="IC3" gate="A" pin="D"/>
 </segment>
 </net>
 <net name="N$73" class="0">
 <segment>
 <pinref part="IN15" gate="-1" pin="S"/>
 <junction x="160.02" y="83.82"/>
+<pinref part="IC4" gate="A" pin="A"/>
 </segment>
 </net>
 <net name="N$74" class="0">
 <segment>
 <pinref part="IN15" gate="-2" pin="S"/>
 <junction x="160.02" y="81.28"/>
+<pinref part="IC4" gate="A" pin="B"/>
 </segment>
 </net>
 <net name="N$75" class="0">
 <segment>
 <pinref part="IN15" gate="-3" pin="S"/>
 <junction x="160.02" y="78.74"/>
+<pinref part="IC4" gate="A" pin="C"/>
 </segment>
 </net>
 <net name="N$76" class="0">
 <segment>
 <pinref part="IN15" gate="-4" pin="S"/>
 <junction x="160.02" y="76.2"/>
+<pinref part="IC4" gate="A" pin="D"/>
 </segment>
 </net>
 <net name="N$80" class="0">

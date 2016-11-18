@@ -15880,10 +15880,10 @@ Based on the following sources:
 <instance part="IN12" gate="-2" x="157.48" y="38.1" rot="MR0"/>
 <instance part="IN12" gate="-3" x="157.48" y="35.56" rot="MR0"/>
 <instance part="IN12" gate="-4" x="157.48" y="33.02" rot="MR0"/>
-<instance part="IN13" gate="-1" x="86.36" y="83.82" rot="MR0"/>
-<instance part="IN13" gate="-2" x="86.36" y="81.28" rot="MR0"/>
-<instance part="IN13" gate="-3" x="86.36" y="78.74" rot="MR0"/>
-<instance part="IN13" gate="-4" x="86.36" y="76.2" rot="MR0"/>
+<instance part="IN13" gate="-1" x="91.44" y="83.82" rot="MR0"/>
+<instance part="IN13" gate="-2" x="91.44" y="81.28" rot="MR0"/>
+<instance part="IN13" gate="-3" x="91.44" y="78.74" rot="MR0"/>
+<instance part="IN13" gate="-4" x="91.44" y="76.2" rot="MR0"/>
 <instance part="IN14" gate="-1" x="124.46" y="83.82" rot="MR0"/>
 <instance part="IN14" gate="-2" x="124.46" y="81.28" rot="MR0"/>
 <instance part="IN14" gate="-3" x="124.46" y="78.74" rot="MR0"/>
@@ -16616,6 +16616,30 @@ Based on the following sources:
 <segment>
 <pinref part="IN15" gate="-4" pin="S"/>
 <junction x="160.02" y="76.2"/>
+</segment>
+</net>
+<net name="N$80" class="0">
+<segment>
+<pinref part="IC2" gate="A" pin="D"/>
+<pinref part="IN13" gate="-4" pin="S"/>
+</segment>
+</net>
+<net name="N$81" class="0">
+<segment>
+<pinref part="IC2" gate="A" pin="C"/>
+<pinref part="IN13" gate="-3" pin="S"/>
+</segment>
+</net>
+<net name="N$82" class="0">
+<segment>
+<pinref part="IC2" gate="A" pin="B"/>
+<pinref part="IN13" gate="-2" pin="S"/>
+</segment>
+</net>
+<net name="N$83" class="0">
+<segment>
+<pinref part="IC2" gate="A" pin="A"/>
+<pinref part="IN13" gate="-1" pin="S"/>
 </segment>
 </net>
 </nets>

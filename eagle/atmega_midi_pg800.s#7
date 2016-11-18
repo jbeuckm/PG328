@@ -16284,6 +16284,294 @@ Based on the following sources:
 <wire x1="53.34" y1="33.02" x2="40.64" y2="33.02" width="0.1524" layer="91"/>
 </segment>
 </net>
+<net name="N$20" class="0">
+<segment>
+<pinref part="IN1" gate="-1" pin="S"/>
+<pinref part="IC2" gate="A" pin="X0"/>
+</segment>
+</net>
+<net name="N$21" class="0">
+<segment>
+<pinref part="IN1" gate="-2" pin="S"/>
+<pinref part="IC2" gate="A" pin="X1"/>
+</segment>
+</net>
+<net name="N$22" class="0">
+<segment>
+<pinref part="IN1" gate="-3" pin="S"/>
+<pinref part="IC2" gate="A" pin="X2"/>
+</segment>
+</net>
+<net name="N$23" class="0">
+<segment>
+<pinref part="IN1" gate="-4" pin="S"/>
+<pinref part="IC2" gate="A" pin="X3"/>
+</segment>
+</net>
+<net name="N$24" class="0">
+<segment>
+<pinref part="IN2" gate="-1" pin="S"/>
+<pinref part="IC2" gate="A" pin="X4"/>
+</segment>
+</net>
+<net name="N$25" class="0">
+<segment>
+<pinref part="IN2" gate="-2" pin="S"/>
+<pinref part="IC2" gate="A" pin="X5"/>
+</segment>
+</net>
+<net name="N$26" class="0">
+<segment>
+<pinref part="IN2" gate="-3" pin="S"/>
+<pinref part="IC2" gate="A" pin="X6"/>
+</segment>
+</net>
+<net name="N$27" class="0">
+<segment>
+<pinref part="IN2" gate="-4" pin="S"/>
+<pinref part="IC2" gate="A" pin="X7"/>
+</segment>
+</net>
+<net name="N$28" class="0">
+<segment>
+<pinref part="IN3" gate="-1" pin="S"/>
+<pinref part="IC2" gate="A" pin="X8"/>
+</segment>
+</net>
+<net name="N$29" class="0">
+<segment>
+<pinref part="IN3" gate="-2" pin="S"/>
+<pinref part="IC2" gate="A" pin="X9"/>
+</segment>
+</net>
+<net name="N$31" class="0">
+<segment>
+<pinref part="IN3" gate="-3" pin="S"/>
+<pinref part="IC2" gate="A" pin="X10"/>
+</segment>
+</net>
+<net name="N$32" class="0">
+<segment>
+<pinref part="IN3" gate="-4" pin="S"/>
+<pinref part="IC2" gate="A" pin="X11"/>
+</segment>
+</net>
+<net name="N$33" class="0">
+<segment>
+<pinref part="IN4" gate="-1" pin="S"/>
+<pinref part="IC2" gate="A" pin="X12"/>
+</segment>
+</net>
+<net name="N$34" class="0">
+<segment>
+<pinref part="IN4" gate="-2" pin="S"/>
+<pinref part="IC2" gate="A" pin="X13"/>
+</segment>
+</net>
+<net name="N$35" class="0">
+<segment>
+<pinref part="IN4" gate="-3" pin="S"/>
+<pinref part="IC2" gate="A" pin="X14"/>
+</segment>
+</net>
+<net name="N$36" class="0">
+<segment>
+<pinref part="IN4" gate="-4" pin="S"/>
+<pinref part="IC2" gate="A" pin="X15"/>
+</segment>
+</net>
+<net name="N$37" class="0">
+<segment>
+<pinref part="IN5" gate="-1" pin="S"/>
+<pinref part="IC3" gate="A" pin="X0"/>
+</segment>
+</net>
+<net name="N$38" class="0">
+<segment>
+<pinref part="IN5" gate="-2" pin="S"/>
+<pinref part="IC3" gate="A" pin="X1"/>
+</segment>
+</net>
+<net name="N$39" class="0">
+<segment>
+<pinref part="IN5" gate="-3" pin="S"/>
+<pinref part="IC3" gate="A" pin="X2"/>
+</segment>
+</net>
+<net name="N$40" class="0">
+<segment>
+<pinref part="IN5" gate="-4" pin="S"/>
+<pinref part="IC3" gate="A" pin="X3"/>
+</segment>
+</net>
+<net name="N$41" class="0">
+<segment>
+<pinref part="IN6" gate="-1" pin="S"/>
+<pinref part="IC3" gate="A" pin="X4"/>
+</segment>
+</net>
+<net name="N$44" class="0">
+<segment>
+<pinref part="IN6" gate="-2" pin="S"/>
+<pinref part="IC3" gate="A" pin="X5"/>
+</segment>
+</net>
+<net name="N$45" class="0">
+<segment>
+<pinref part="IN6" gate="-3" pin="S"/>
+<pinref part="IC3" gate="A" pin="X6"/>
+</segment>
+</net>
+<net name="N$46" class="0">
+<segment>
+<pinref part="IN6" gate="-4" pin="S"/>
+<pinref part="IC3" gate="A" pin="X7"/>
+</segment>
+</net>
+<net name="N$47" class="0">
+<segment>
+<pinref part="IN7" gate="-1" pin="S"/>
+<pinref part="IC3" gate="A" pin="X8"/>
+</segment>
+</net>
+<net name="N$48" class="0">
+<segment>
+<pinref part="IN7" gate="-2" pin="S"/>
+<pinref part="IC3" gate="A" pin="X9"/>
+</segment>
+</net>
+<net name="N$49" class="0">
+<segment>
+<pinref part="IN7" gate="-3" pin="S"/>
+<pinref part="IC3" gate="A" pin="X10"/>
+</segment>
+</net>
+<net name="N$50" class="0">
+<segment>
+<pinref part="IN7" gate="-4" pin="S"/>
+<pinref part="IC3" gate="A" pin="X11"/>
+</segment>
+</net>
+<net name="N$51" class="0">
+<segment>
+<pinref part="IN8" gate="-1" pin="S"/>
+<pinref part="IC3" gate="A" pin="X12"/>
+</segment>
+</net>
+<net name="N$52" class="0">
+<segment>
+<pinref part="IN8" gate="-2" pin="S"/>
+<pinref part="IC3" gate="A" pin="X13"/>
+</segment>
+</net>
+<net name="N$53" class="0">
+<segment>
+<pinref part="IN8" gate="-3" pin="S"/>
+<pinref part="IC3" gate="A" pin="X14"/>
+</segment>
+</net>
+<net name="N$54" class="0">
+<segment>
+<pinref part="IN8" gate="-4" pin="S"/>
+<pinref part="IC3" gate="A" pin="X15"/>
+</segment>
+</net>
+<net name="N$55" class="0">
+<segment>
+<pinref part="IN9" gate="-1" pin="S"/>
+<pinref part="IC4" gate="A" pin="X0"/>
+</segment>
+</net>
+<net name="N$56" class="0">
+<segment>
+<pinref part="IN9" gate="-2" pin="S"/>
+<pinref part="IC4" gate="A" pin="X1"/>
+</segment>
+</net>
+<net name="N$57" class="0">
+<segment>
+<pinref part="IN9" gate="-3" pin="S"/>
+<pinref part="IC4" gate="A" pin="X2"/>
+</segment>
+</net>
+<net name="N$58" class="0">
+<segment>
+<pinref part="IN9" gate="-4" pin="S"/>
+<pinref part="IC4" gate="A" pin="X3"/>
+</segment>
+</net>
+<net name="N$59" class="0">
+<segment>
+<pinref part="IN10" gate="-1" pin="S"/>
+<pinref part="IC4" gate="A" pin="X4"/>
+</segment>
+</net>
+<net name="N$60" class="0">
+<segment>
+<pinref part="IN10" gate="-2" pin="S"/>
+<pinref part="IC4" gate="A" pin="X5"/>
+</segment>
+</net>
+<net name="N$61" class="0">
+<segment>
+<pinref part="IN10" gate="-3" pin="S"/>
+<pinref part="IC4" gate="A" pin="X6"/>
+</segment>
+</net>
+<net name="N$62" class="0">
+<segment>
+<pinref part="IN10" gate="-4" pin="S"/>
+<pinref part="IC4" gate="A" pin="X7"/>
+</segment>
+</net>
+<net name="N$63" class="0">
+<segment>
+<pinref part="IN11" gate="-1" pin="S"/>
+<pinref part="IC4" gate="A" pin="X8"/>
+</segment>
+</net>
+<net name="N$64" class="0">
+<segment>
+<pinref part="IN11" gate="-2" pin="S"/>
+<pinref part="IC4" gate="A" pin="X9"/>
+</segment>
+</net>
+<net name="N$65" class="0">
+<segment>
+<pinref part="IN11" gate="-3" pin="S"/>
+<pinref part="IC4" gate="A" pin="X10"/>
+</segment>
+</net>
+<net name="N$66" class="0">
+<segment>
+<pinref part="IN11" gate="-4" pin="S"/>
+<pinref part="IC4" gate="A" pin="X11"/>
+</segment>
+</net>
+<net name="N$67" class="0">
+<segment>
+<pinref part="IN12" gate="-1" pin="S"/>
+<pinref part="IC4" gate="A" pin="X12"/>
+</segment>
+</net>
+<net name="N$68" class="0">
+<segment>
+<pinref part="IN12" gate="-2" pin="S"/>
+<pinref part="IC4" gate="A" pin="X13"/>
+</segment>
+</net>
+<net name="N$69" class="0">
+<segment>
+<pinref part="IN12" gate="-3" pin="S"/>
+<pinref part="IC4" gate="A" pin="X14"/>
+</segment>
+</net>
+<net name="N$70" class="0">
+<segment>
+<pinref part="IN12" gate="-4" pin="S"/>
+<pinref part="IC4" gate="A" pin="X15"/>
+</segment>
+</net>
 </nets>
 </sheet>
 </sheets>

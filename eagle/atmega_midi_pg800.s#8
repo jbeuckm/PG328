@@ -14730,6 +14730,22 @@ http://www.fairchildsemi.com/ds/LM/LM7805.pdf</description>
 <text x="-2.54" y="3.81" size="1.016" layer="25" ratio="10">&gt;NAME</text>
 <text x="-2.54" y="-5.08" size="1.016" layer="27" ratio="10">&gt;VALUE</text>
 </package>
+<package name="22-23-2041">
+<description>.100" (2.54mm) Center Header - 4 Pin</description>
+<wire x1="-5.08" y1="3.175" x2="5.08" y2="3.175" width="0.254" layer="21"/>
+<wire x1="5.08" y1="3.175" x2="5.08" y2="1.27" width="0.254" layer="21"/>
+<wire x1="5.08" y1="1.27" x2="5.08" y2="-3.175" width="0.254" layer="21"/>
+<wire x1="5.08" y1="-3.175" x2="-5.08" y2="-3.175" width="0.254" layer="21"/>
+<wire x1="-5.08" y1="-3.175" x2="-5.08" y2="1.27" width="0.254" layer="21"/>
+<wire x1="-5.08" y1="1.27" x2="-5.08" y2="3.175" width="0.254" layer="21"/>
+<wire x1="-5.08" y1="1.27" x2="5.08" y2="1.27" width="0.254" layer="21"/>
+<pad name="1" x="-3.81" y="0" drill="1" shape="long" rot="R90"/>
+<pad name="2" x="-1.27" y="0" drill="1" shape="long" rot="R90"/>
+<pad name="3" x="1.27" y="0" drill="1" shape="long" rot="R90"/>
+<pad name="4" x="3.81" y="0" drill="1" shape="long" rot="R90"/>
+<text x="-5.08" y="3.81" size="1.016" layer="25" ratio="10">&gt;NAME</text>
+<text x="-5.08" y="-5.08" size="1.016" layer="27" ratio="10">&gt;VALUE</text>
+</package>
 </packages>
 <symbols>
 <symbol name="MV">
@@ -14763,6 +14779,33 @@ http://www.fairchildsemi.com/ds/LM/LM7805.pdf</description>
 <attribute name="MPN" value="22-23-2021" constant="no"/>
 <attribute name="OC_FARNELL" value="1462926" constant="no"/>
 <attribute name="OC_NEWARK" value="25C3832" constant="no"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="22-23-2041" prefix="X">
+<description>.100" (2.54mm) Center Header - 4 Pin</description>
+<gates>
+<gate name="-1" symbol="MV" x="0" y="2.54" addlevel="always" swaplevel="1"/>
+<gate name="-2" symbol="M" x="0" y="0" addlevel="always" swaplevel="1"/>
+<gate name="-3" symbol="M" x="0" y="-2.54" addlevel="always" swaplevel="1"/>
+<gate name="-4" symbol="M" x="0" y="-5.08" addlevel="always" swaplevel="1"/>
+</gates>
+<devices>
+<device name="" package="22-23-2041">
+<connects>
+<connect gate="-1" pin="S" pad="1"/>
+<connect gate="-2" pin="S" pad="2"/>
+<connect gate="-3" pin="S" pad="3"/>
+<connect gate="-4" pin="S" pad="4"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="MF" value="MOLEX" constant="no"/>
+<attribute name="MPN" value="22-23-2041" constant="no"/>
+<attribute name="OC_FARNELL" value="1462920" constant="no"/>
+<attribute name="OC_NEWARK" value="38C0355" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -15717,6 +15760,19 @@ Based on the following sources:
 <part name="IC2" library="40xx" deviceset="4067" device="N"/>
 <part name="IC3" library="40xx" deviceset="4067" device="N"/>
 <part name="IC4" library="40xx" deviceset="4067" device="N"/>
+<part name="IN" library="con-molex" deviceset="22-23-2041" device=""/>
+<part name="IN1" library="con-molex" deviceset="22-23-2041" device=""/>
+<part name="IN2" library="con-molex" deviceset="22-23-2041" device=""/>
+<part name="IN3" library="con-molex" deviceset="22-23-2041" device=""/>
+<part name="IN4" library="con-molex" deviceset="22-23-2041" device=""/>
+<part name="IN5" library="con-molex" deviceset="22-23-2041" device=""/>
+<part name="IN6" library="con-molex" deviceset="22-23-2041" device=""/>
+<part name="IN7" library="con-molex" deviceset="22-23-2041" device=""/>
+<part name="IN8" library="con-molex" deviceset="22-23-2041" device=""/>
+<part name="IN9" library="con-molex" deviceset="22-23-2041" device=""/>
+<part name="IN10" library="con-molex" deviceset="22-23-2041" device=""/>
+<part name="IN11" library="con-molex" deviceset="22-23-2041" device=""/>
+<part name="IN12" library="con-molex" deviceset="22-23-2041" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -15771,6 +15827,58 @@ Based on the following sources:
 <instance part="IC2" gate="A" x="106.68" y="60.96"/>
 <instance part="IC3" gate="A" x="139.7" y="60.96"/>
 <instance part="IC4" gate="A" x="172.72" y="60.96"/>
+<instance part="IN" gate="-1" x="127" y="124.46" rot="MR0"/>
+<instance part="IN" gate="-2" x="127" y="121.92" rot="MR0"/>
+<instance part="IN" gate="-3" x="127" y="119.38" rot="MR0"/>
+<instance part="IN" gate="-4" x="127" y="116.84" rot="MR0"/>
+<instance part="IN1" gate="-1" x="91.44" y="71.12" rot="MR0"/>
+<instance part="IN1" gate="-2" x="91.44" y="68.58" rot="MR0"/>
+<instance part="IN1" gate="-3" x="91.44" y="66.04" rot="MR0"/>
+<instance part="IN1" gate="-4" x="91.44" y="63.5" rot="MR0"/>
+<instance part="IN2" gate="-1" x="91.44" y="60.96" rot="MR0"/>
+<instance part="IN2" gate="-2" x="91.44" y="58.42" rot="MR0"/>
+<instance part="IN2" gate="-3" x="91.44" y="55.88" rot="MR0"/>
+<instance part="IN2" gate="-4" x="91.44" y="53.34" rot="MR0"/>
+<instance part="IN3" gate="-1" x="91.44" y="50.8" rot="MR0"/>
+<instance part="IN3" gate="-2" x="91.44" y="48.26" rot="MR0"/>
+<instance part="IN3" gate="-3" x="91.44" y="45.72" rot="MR0"/>
+<instance part="IN3" gate="-4" x="91.44" y="43.18" rot="MR0"/>
+<instance part="IN4" gate="-1" x="91.44" y="40.64" rot="MR0"/>
+<instance part="IN4" gate="-2" x="91.44" y="38.1" rot="MR0"/>
+<instance part="IN4" gate="-3" x="91.44" y="35.56" rot="MR0"/>
+<instance part="IN4" gate="-4" x="91.44" y="33.02" rot="MR0"/>
+<instance part="IN5" gate="-1" x="124.46" y="71.12" rot="MR0"/>
+<instance part="IN5" gate="-2" x="124.46" y="68.58" rot="MR0"/>
+<instance part="IN5" gate="-3" x="124.46" y="66.04" rot="MR0"/>
+<instance part="IN5" gate="-4" x="124.46" y="63.5" rot="MR0"/>
+<instance part="IN6" gate="-1" x="124.46" y="60.96" rot="MR0"/>
+<instance part="IN6" gate="-2" x="124.46" y="58.42" rot="MR0"/>
+<instance part="IN6" gate="-3" x="124.46" y="55.88" rot="MR0"/>
+<instance part="IN6" gate="-4" x="124.46" y="53.34" rot="MR0"/>
+<instance part="IN7" gate="-1" x="124.46" y="50.8" rot="MR0"/>
+<instance part="IN7" gate="-2" x="124.46" y="48.26" rot="MR0"/>
+<instance part="IN7" gate="-3" x="124.46" y="45.72" rot="MR0"/>
+<instance part="IN7" gate="-4" x="124.46" y="43.18" rot="MR0"/>
+<instance part="IN8" gate="-1" x="124.46" y="40.64" rot="MR0"/>
+<instance part="IN8" gate="-2" x="124.46" y="38.1" rot="MR0"/>
+<instance part="IN8" gate="-3" x="124.46" y="35.56" rot="MR0"/>
+<instance part="IN8" gate="-4" x="124.46" y="33.02" rot="MR0"/>
+<instance part="IN9" gate="-1" x="157.48" y="71.12" rot="MR0"/>
+<instance part="IN9" gate="-2" x="157.48" y="68.58" rot="MR0"/>
+<instance part="IN9" gate="-3" x="157.48" y="66.04" rot="MR0"/>
+<instance part="IN9" gate="-4" x="157.48" y="63.5" rot="MR0"/>
+<instance part="IN10" gate="-1" x="157.48" y="60.96" rot="MR0"/>
+<instance part="IN10" gate="-2" x="157.48" y="58.42" rot="MR0"/>
+<instance part="IN10" gate="-3" x="157.48" y="55.88" rot="MR0"/>
+<instance part="IN10" gate="-4" x="157.48" y="53.34" rot="MR0"/>
+<instance part="IN11" gate="-1" x="157.48" y="50.8" rot="MR0"/>
+<instance part="IN11" gate="-2" x="157.48" y="48.26" rot="MR0"/>
+<instance part="IN11" gate="-3" x="157.48" y="45.72" rot="MR0"/>
+<instance part="IN11" gate="-4" x="157.48" y="43.18" rot="MR0"/>
+<instance part="IN12" gate="-1" x="157.48" y="40.64" rot="MR0"/>
+<instance part="IN12" gate="-2" x="157.48" y="38.1" rot="MR0"/>
+<instance part="IN12" gate="-3" x="157.48" y="35.56" rot="MR0"/>
+<instance part="IN12" gate="-4" x="157.48" y="33.02" rot="MR0"/>
 </instances>
 <busses>
 </busses>
