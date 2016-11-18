@@ -14746,6 +14746,23 @@ http://www.fairchildsemi.com/ds/LM/LM7805.pdf</description>
 <text x="-5.08" y="3.81" size="1.016" layer="25" ratio="10">&gt;NAME</text>
 <text x="-5.08" y="-5.08" size="1.016" layer="27" ratio="10">&gt;VALUE</text>
 </package>
+<package name="22-23-2051">
+<description>.100" (2.54mm) Center Header - 5 Pin</description>
+<wire x1="-6.35" y1="3.175" x2="6.35" y2="3.175" width="0.254" layer="21"/>
+<wire x1="6.35" y1="3.175" x2="6.35" y2="1.27" width="0.254" layer="21"/>
+<wire x1="6.35" y1="1.27" x2="6.35" y2="-3.175" width="0.254" layer="21"/>
+<wire x1="6.35" y1="-3.175" x2="-6.35" y2="-3.175" width="0.254" layer="21"/>
+<wire x1="-6.35" y1="-3.175" x2="-6.35" y2="1.27" width="0.254" layer="21"/>
+<wire x1="-6.35" y1="1.27" x2="-6.35" y2="3.175" width="0.254" layer="21"/>
+<wire x1="-6.35" y1="1.27" x2="6.35" y2="1.27" width="0.254" layer="21"/>
+<pad name="1" x="-5.08" y="0" drill="1" shape="long" rot="R90"/>
+<pad name="2" x="-2.54" y="0" drill="1" shape="long" rot="R90"/>
+<pad name="3" x="0" y="0" drill="1" shape="long" rot="R90"/>
+<pad name="4" x="2.54" y="0" drill="1" shape="long" rot="R90"/>
+<pad name="5" x="5.08" y="0" drill="1" shape="long" rot="R90"/>
+<text x="-6.35" y="3.81" size="1.016" layer="25" ratio="10">&gt;NAME</text>
+<text x="-6.35" y="-5.08" size="1.016" layer="27" ratio="10">&gt;VALUE</text>
+</package>
 </packages>
 <symbols>
 <symbol name="MV">
@@ -14806,6 +14823,35 @@ http://www.fairchildsemi.com/ds/LM/LM7805.pdf</description>
 <attribute name="MPN" value="22-23-2041" constant="no"/>
 <attribute name="OC_FARNELL" value="1462920" constant="no"/>
 <attribute name="OC_NEWARK" value="38C0355" constant="no"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="22-23-2051" prefix="X">
+<description>.100" (2.54mm) Center Header - 5 Pin</description>
+<gates>
+<gate name="-1" symbol="MV" x="0" y="5.08" addlevel="always" swaplevel="1"/>
+<gate name="-2" symbol="M" x="0" y="2.54" addlevel="always" swaplevel="1"/>
+<gate name="-3" symbol="M" x="0" y="0" addlevel="always" swaplevel="1"/>
+<gate name="-4" symbol="M" x="0" y="-2.54" addlevel="always" swaplevel="1"/>
+<gate name="-5" symbol="M" x="0" y="-5.08" addlevel="always" swaplevel="1"/>
+</gates>
+<devices>
+<device name="" package="22-23-2051">
+<connects>
+<connect gate="-1" pin="S" pad="1"/>
+<connect gate="-2" pin="S" pad="2"/>
+<connect gate="-3" pin="S" pad="3"/>
+<connect gate="-4" pin="S" pad="4"/>
+<connect gate="-5" pin="S" pad="5"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="MF" value="MOLEX" constant="no"/>
+<attribute name="MPN" value="22-23-2051" constant="no"/>
+<attribute name="OC_FARNELL" value="1462952" constant="no"/>
+<attribute name="OC_NEWARK" value="38C9178" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -15093,7 +15139,7 @@ Based on the following sources:
 <part name="GND2" library="supply1" deviceset="GND" device=""/>
 <part name="GND9" library="supply1" deviceset="GND" device=""/>
 <part name="GND16" library="supply1" deviceset="GND" device=""/>
-<part name="R5" library="rcl" deviceset="R-US_" device="0309/12" value="220"/>
+<part name="R5" library="rcl" deviceset="R-US_" device="0309/10" value="220"/>
 <part name="GND17" library="supply1" deviceset="GND" device=""/>
 <part name="MIDI_THRU" library="adafruit" deviceset="MIDIJACK" device=""/>
 <part name="P+3" library="supply1" deviceset="+5V" device=""/>
@@ -15139,6 +15185,9 @@ Based on the following sources:
 <part name="P+7" library="supply1" deviceset="+5V" device=""/>
 <part name="P+8" library="supply1" deviceset="+5V" device=""/>
 <part name="GND15" library="supply1" deviceset="GND" device=""/>
+<part name="ROT_ENC" library="con-molex" deviceset="22-23-2051" device=""/>
+<part name="GND18" library="supply1" deviceset="GND" device=""/>
+<part name="P+9" library="supply1" deviceset="+5V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -15272,6 +15321,13 @@ Based on the following sources:
 <instance part="P+7" gate="1" x="132.08" y="129.54" rot="MR0"/>
 <instance part="P+8" gate="1" x="139.7" y="129.54" rot="MR0"/>
 <instance part="GND15" gate="1" x="121.92" y="0" rot="MR0"/>
+<instance part="ROT_ENC" gate="-1" x="66.04" y="38.1" rot="MR180"/>
+<instance part="ROT_ENC" gate="-2" x="66.04" y="40.64" rot="MR180"/>
+<instance part="ROT_ENC" gate="-3" x="66.04" y="43.18" rot="MR180"/>
+<instance part="ROT_ENC" gate="-4" x="66.04" y="45.72" rot="MR180"/>
+<instance part="ROT_ENC" gate="-5" x="66.04" y="48.26" rot="MR180"/>
+<instance part="GND18" gate="1" x="60.96" y="30.48"/>
+<instance part="P+9" gate="1" x="60.96" y="43.18"/>
 </instances>
 <busses>
 </busses>
@@ -15397,6 +15453,11 @@ Based on the following sources:
 <segment>
 <pinref part="IC4" gate="P" pin="VDD"/>
 <pinref part="P+8" gate="1" pin="+5V"/>
+</segment>
+<segment>
+<pinref part="P+9" gate="1" pin="+5V"/>
+<pinref part="ROT_ENC" gate="-2" pin="S"/>
+<wire x1="60.96" y1="40.64" x2="63.5" y2="40.64" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$30" class="0">
@@ -15555,6 +15616,12 @@ Based on the following sources:
 <pinref part="IC1" gate="A1" pin="GND"/>
 <wire x1="121.92" y1="2.54" x2="121.92" y2="10.16" width="0.1524" layer="91"/>
 <pinref part="GND15" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="GND18" gate="1" pin="GND"/>
+<wire x1="60.96" y1="33.02" x2="60.96" y2="38.1" width="0.1524" layer="91"/>
+<pinref part="ROT_ENC" gate="-1" pin="S"/>
+<wire x1="60.96" y1="38.1" x2="63.5" y2="38.1" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$42" class="0">
@@ -16049,6 +16116,33 @@ Based on the following sources:
 <segment>
 <pinref part="U2" gate="G$1" pin="PB3(MOSI/OC2)"/>
 <pinref part="IN16" gate="-4" pin="S"/>
+</segment>
+</net>
+<net name="N$84" class="0">
+<segment>
+<pinref part="ROT_ENC" gate="-5" pin="S"/>
+<wire x1="63.5" y1="48.26" x2="50.8" y2="48.26" width="0.1524" layer="91"/>
+<wire x1="50.8" y1="48.26" x2="50.8" y2="45.72" width="0.1524" layer="91"/>
+<pinref part="U2" gate="G$1" pin="PD2(INT0)"/>
+<wire x1="50.8" y1="45.72" x2="40.64" y2="45.72" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$85" class="0">
+<segment>
+<pinref part="U2" gate="G$1" pin="PD3(INT1)"/>
+<wire x1="40.64" y1="43.18" x2="53.34" y2="43.18" width="0.1524" layer="91"/>
+<wire x1="53.34" y1="43.18" x2="53.34" y2="45.72" width="0.1524" layer="91"/>
+<pinref part="ROT_ENC" gate="-4" pin="S"/>
+<wire x1="53.34" y1="45.72" x2="63.5" y2="45.72" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$86" class="0">
+<segment>
+<pinref part="ROT_ENC" gate="-3" pin="S"/>
+<wire x1="63.5" y1="43.18" x2="55.88" y2="43.18" width="0.1524" layer="91"/>
+<wire x1="55.88" y1="43.18" x2="55.88" y2="40.64" width="0.1524" layer="91"/>
+<pinref part="U2" gate="G$1" pin="PD4(XCK/T0)"/>
+<wire x1="55.88" y1="40.64" x2="40.64" y2="40.64" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
