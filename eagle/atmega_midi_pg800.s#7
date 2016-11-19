@@ -15093,7 +15093,7 @@ Based on the following sources:
 <part name="GND2" library="supply1" deviceset="GND" device=""/>
 <part name="GND9" library="supply1" deviceset="GND" device=""/>
 <part name="GND16" library="supply1" deviceset="GND" device=""/>
-<part name="R5" library="rcl" deviceset="R-US_" device="0207/7" value="220"/>
+<part name="R5" library="rcl" deviceset="R-US_" device="0309/12" value="220"/>
 <part name="GND17" library="supply1" deviceset="GND" device=""/>
 <part name="MIDI_THRU" library="adafruit" deviceset="MIDIJACK" device=""/>
 <part name="P+3" library="supply1" deviceset="+5V" device=""/>

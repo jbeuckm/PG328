@@ -15145,7 +15145,6 @@ Based on the following sources:
 <part name="P+3" library="supply1" deviceset="+5V" device=""/>
 <part name="GND1" library="supply1" deviceset="GND" device=""/>
 <part name="JX10" library="con-hirschmann" deviceset="MAB6H" device=""/>
-<part name="IC1" library="linear" deviceset="78*" device="Z" technology="L05"/>
 <part name="GND3" library="supply1" deviceset="GND" device=""/>
 <part name="C4" library="rcl" deviceset="CPOL-US" device="B45181A" value="100uF"/>
 <part name="C5" library="rcl" deviceset="CPOL-US" device="B45181A" value="10uF"/>
@@ -15188,6 +15187,7 @@ Based on the following sources:
 <part name="ROT_ENC" library="con-molex" deviceset="22-23-2051" device=""/>
 <part name="GND18" library="supply1" deviceset="GND" device=""/>
 <part name="P+9" library="supply1" deviceset="+5V" device=""/>
+<part name="IC5" library="linear" deviceset="78*" device="TV" technology="05"/>
 </parts>
 <sheets>
 <sheet>
@@ -15226,7 +15226,6 @@ Based on the following sources:
 <instance part="MIDI_THRU" gate="G$5" x="58.42" y="93.98"/>
 <instance part="GND1" gate="1" x="53.34" y="86.36"/>
 <instance part="JX10" gate="G$1" x="71.12" y="5.08"/>
-<instance part="IC1" gate="A1" x="121.92" y="17.78"/>
 <instance part="GND3" gate="1" x="53.34" y="0"/>
 <instance part="C4" gate="G$1" x="106.68" y="10.16" rot="MR0"/>
 <instance part="C5" gate="G$1" x="137.16" y="10.16" rot="MR0"/>
@@ -15328,6 +15327,7 @@ Based on the following sources:
 <instance part="ROT_ENC" gate="-5" x="66.04" y="48.26" rot="MR180"/>
 <instance part="GND18" gate="1" x="60.96" y="30.48"/>
 <instance part="P+9" gate="1" x="60.96" y="43.18"/>
+<instance part="IC5" gate="A1" x="121.92" y="17.78"/>
 </instances>
 <busses>
 </busses>
@@ -15428,13 +15428,13 @@ Based on the following sources:
 <wire x1="99.06" y1="111.76" x2="99.06" y2="116.84" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="IC1" gate="A1" pin="VO"/>
 <pinref part="C5" gate="G$1" pin="+"/>
 <wire x1="132.08" y1="17.78" x2="137.16" y2="17.78" width="0.1524" layer="91"/>
 <wire x1="137.16" y1="17.78" x2="137.16" y2="12.7" width="0.1524" layer="91"/>
 <pinref part="P+4" gate="1" pin="+5V"/>
 <wire x1="137.16" y1="20.32" x2="137.16" y2="17.78" width="0.1524" layer="91"/>
 <junction x="137.16" y="17.78"/>
+<pinref part="IC5" gate="A1" pin="VO"/>
 </segment>
 <segment>
 <pinref part="P+5" gate="1" pin="+5V"/>
@@ -15613,9 +15613,9 @@ Based on the following sources:
 <pinref part="GND14" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="IC1" gate="A1" pin="GND"/>
 <wire x1="121.92" y1="2.54" x2="121.92" y2="10.16" width="0.1524" layer="91"/>
 <pinref part="GND15" gate="1" pin="GND"/>
+<pinref part="IC5" gate="A1" pin="GND"/>
 </segment>
 <segment>
 <pinref part="GND18" gate="1" pin="GND"/>
@@ -15642,7 +15642,6 @@ Based on the following sources:
 </net>
 <net name="N$6" class="0">
 <segment>
-<pinref part="IC1" gate="A1" pin="VI"/>
 <pinref part="C4" gate="G$1" pin="+"/>
 <wire x1="106.68" y1="17.78" x2="111.76" y2="17.78" width="0.1524" layer="91"/>
 <wire x1="106.68" y1="12.7" x2="106.68" y2="17.78" width="0.1524" layer="91"/>
@@ -15651,6 +15650,7 @@ Based on the following sources:
 <wire x1="106.68" y1="17.78" x2="96.52" y2="17.78" width="0.1524" layer="91"/>
 <wire x1="96.52" y1="17.78" x2="96.52" y2="0" width="0.1524" layer="91"/>
 <wire x1="96.52" y1="0" x2="86.36" y2="0" width="0.1524" layer="91"/>
+<pinref part="IC5" gate="A1" pin="VI"/>
 </segment>
 </net>
 <net name="N$9" class="0">

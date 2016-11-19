@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.7.0">
+<eagle version="7.6.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -15392,15 +15392,15 @@ general purpose rectifier, 1 A</description>
 <instance part="DISPLAY" gate="-2" x="58.42" y="58.42" rot="MR180"/>
 <instance part="DISPLAY" gate="-3" x="58.42" y="60.96" rot="MR180"/>
 <instance part="DISPLAY" gate="-4" x="58.42" y="63.5" rot="MR180"/>
-<instance part="IC2" gate="P" x="124.46" y="119.38"/>
-<instance part="IC3" gate="P" x="132.08" y="119.38"/>
-<instance part="IC4" gate="P" x="139.7" y="119.38"/>
-<instance part="GND6" gate="1" x="124.46" y="109.22"/>
-<instance part="GND13" gate="1" x="132.08" y="109.22"/>
-<instance part="GND14" gate="1" x="139.7" y="109.22"/>
-<instance part="P+6" gate="1" x="124.46" y="129.54" rot="MR0"/>
-<instance part="P+7" gate="1" x="132.08" y="129.54" rot="MR0"/>
-<instance part="P+8" gate="1" x="139.7" y="129.54" rot="MR0"/>
+<instance part="IC2" gate="P" x="106.68" y="114.3"/>
+<instance part="IC3" gate="P" x="114.3" y="114.3"/>
+<instance part="IC4" gate="P" x="121.92" y="114.3"/>
+<instance part="GND6" gate="1" x="106.68" y="104.14"/>
+<instance part="GND13" gate="1" x="114.3" y="104.14"/>
+<instance part="GND14" gate="1" x="121.92" y="104.14"/>
+<instance part="P+6" gate="1" x="106.68" y="124.46" rot="MR0"/>
+<instance part="P+7" gate="1" x="114.3" y="124.46" rot="MR0"/>
+<instance part="P+8" gate="1" x="121.92" y="124.46" rot="MR0"/>
 <instance part="GND15" gate="1" x="121.92" y="0" rot="MR0"/>
 <instance part="ROT_ENC" gate="-1" x="66.04" y="38.1" rot="MR180"/>
 <instance part="ROT_ENC" gate="-2" x="66.04" y="40.64" rot="MR180"/>
@@ -15410,19 +15410,19 @@ general purpose rectifier, 1 A</description>
 <instance part="GND18" gate="1" x="60.96" y="30.48"/>
 <instance part="P+9" gate="1" x="60.96" y="43.18"/>
 <instance part="IC5" gate="A1" x="121.92" y="17.78"/>
-<instance part="POT_PWR" gate="-1" x="167.64" y="12.7" rot="MR180"/>
-<instance part="POT_PWR" gate="-2" x="167.64" y="15.24" rot="MR180"/>
+<instance part="POT_PWR" gate="-1" x="152.4" y="12.7" rot="MR180"/>
+<instance part="POT_PWR" gate="-2" x="152.4" y="15.24" rot="MR180"/>
 <instance part="D2" gate="1" x="121.92" y="25.4" rot="R180"/>
-<instance part="POT_PWR1" gate="-1" x="167.64" y="2.54" rot="MR180"/>
-<instance part="POT_PWR1" gate="-2" x="167.64" y="5.08" rot="MR180"/>
-<instance part="POT_PWR2" gate="-1" x="187.96" y="12.7" rot="MR180"/>
-<instance part="POT_PWR2" gate="-2" x="187.96" y="15.24" rot="MR180"/>
-<instance part="P+10" gate="1" x="165.1" y="17.78" rot="MR0"/>
-<instance part="P+11" gate="1" x="165.1" y="7.62" rot="MR0"/>
-<instance part="P+12" gate="1" x="185.42" y="17.78" rot="MR0"/>
-<instance part="GND19" gate="1" x="165.1" y="0" rot="MR0"/>
-<instance part="GND20" gate="1" x="165.1" y="10.16" rot="MR0"/>
-<instance part="GND21" gate="1" x="185.42" y="10.16" rot="MR0"/>
+<instance part="POT_PWR1" gate="-1" x="152.4" y="2.54" rot="MR180"/>
+<instance part="POT_PWR1" gate="-2" x="152.4" y="5.08" rot="MR180"/>
+<instance part="POT_PWR2" gate="-1" x="172.72" y="12.7" rot="MR180"/>
+<instance part="POT_PWR2" gate="-2" x="172.72" y="15.24" rot="MR180"/>
+<instance part="P+10" gate="1" x="149.86" y="17.78" rot="MR0"/>
+<instance part="P+11" gate="1" x="149.86" y="7.62" rot="MR0"/>
+<instance part="P+12" gate="1" x="170.18" y="17.78" rot="MR0"/>
+<instance part="GND19" gate="1" x="149.86" y="0" rot="MR0"/>
+<instance part="GND20" gate="1" x="149.86" y="10.16" rot="MR0"/>
+<instance part="GND21" gate="1" x="170.18" y="10.16" rot="MR0"/>
 </instances>
 <busses>
 </busses>

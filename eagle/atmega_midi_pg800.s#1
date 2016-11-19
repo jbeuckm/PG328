@@ -15531,9 +15531,10 @@ general purpose rectifier, 1 A</description>
 <wire x1="137.16" y1="20.32" x2="137.16" y2="17.78" width="0.1524" layer="91"/>
 <junction x="137.16" y="17.78"/>
 <pinref part="IC5" gate="A1" pin="VO"/>
-<wire x1="127" y1="25.4" x2="134.62" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="124.46" y1="25.4" x2="134.62" y2="25.4" width="0.1524" layer="91"/>
 <wire x1="134.62" y1="25.4" x2="134.62" y2="17.78" width="0.1524" layer="91"/>
 <junction x="134.62" y="17.78"/>
+<pinref part="D2" gate="1" pin="A"/>
 </segment>
 <segment>
 <pinref part="P+5" gate="1" pin="+5V"/>

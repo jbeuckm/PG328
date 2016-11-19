@@ -4,7 +4,7 @@
 (This file generated from the board:)
 (.../atmega_midi_pg800/eagle/atmega_midi_pg800.brd)
 (Current profile is .../pcb-gcode-3.6.2.4/profiles/mach.pp  )
-(This file generated 11/17/16 11:02 PM)
+(This file generated 11/18/16 8:16 PM)
 (Settings from pcb-machine.h)
 (spindle on time = 0.0000)
 (spindle speed = 15000.0000)
@@ -55,16 +55,6 @@ G00 X1.9300  Y0.1600
 G01 Z-0.0730 F5     
 G01 X1.9300  Y0.1100  F10    
 G00 Z0.0500  
-G00 X3.3400  Y1.2400  
-G01 Z-0.0730 F5     
-G01 X3.3900  Y1.2400  F10    
-G01 X3.3900  Y1.2900  
-G01 X3.3600  Y1.2900  
-G00 Z0.0500  
-G00 X3.3400  Y1.2900  
-G01 Z-0.0730 F5     
-G01 X3.3400  Y1.2400  F10    
-G00 Z0.0500  
 G00 X1.0700  Y1.7100  
 G01 Z-0.0730 F5     
 G01 X1.0700  Y1.7600  F10    
@@ -74,6 +64,13 @@ G00 X1.0200  Y1.7600
 G01 Z-0.0730 F5     
 G01 X1.0200  Y1.7100  F10    
 G01 X1.0700  Y1.7100  
+G00 Z0.0500  
+G00 X3.4600  Y1.5900  
+G01 Z-0.0730 F5     
+G01 X3.4600  Y1.5400  F10    
+G01 X3.5100  Y1.5400  
+G01 X3.5100  Y1.5900  
+G01 X3.4800  Y1.5900  
 G00 Z0.2500  
 M05
 M02
