@@ -4,7 +4,7 @@
 (This file generated from the board:)
 (.../atmega_midi_pg800/eagle/atmega_midi_pg800.brd)
 (Current profile is .../pcb-gcode-3.6.2.4/profiles/mach.pp  )
-(This file generated 11/18/16 8:16 PM)
+(This file generated 11/18/16 11:04 PM)
 (Settings from pcb-machine.h)
 (spindle on time = 0.0000)
 (spindle speed = 20000.0000)
