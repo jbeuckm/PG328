@@ -2062,10 +2062,10 @@ design rules under a new name.</description>
 <attribute name="MF" value="" x="60.96" y="19.05" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="OC_FARNELL" value="1667008" x="60.96" y="19.05" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
-<element name="R1" library="rcl" package="0207/7" value="10k" x="22.86" y="29.718" rot="R270"/>
+<element name="R1" library="rcl" package="0207/7" value="10k" x="22.86" y="28.448" rot="R270"/>
 <element name="R2" library="rcl" package="0207/7" value="220" x="11.938" y="18.796" rot="R180"/>
 <element name="R24" library="rcl" package="0207/7" value="1M" x="64.77" y="17.78" rot="R270"/>
-<element name="R3" library="rcl" package="0207/7" value="270" x="19.812" y="29.718" rot="R90"/>
+<element name="R3" library="rcl" package="0207/7" value="270" x="19.812" y="28.448" rot="R90"/>
 <element name="MIDI_IN" library="adafruit" package="CP-2350" value="MIDIJACK" x="12.7" y="0"/>
 <element name="U1" library="optocoupler" package="DIL08" value="6N138" x="12.065" y="27.305" rot="R270">
 <attribute name="OC_NEWARK" value="35K5294" x="12.065" y="27.305" size="1.778" layer="27" rot="R270" display="off"/>
@@ -2282,8 +2282,8 @@ design rules under a new name.</description>
 <contactref element="R3" pad="2"/>
 <contactref element="R5" pad="1"/>
 <contactref element="C5" pad="+"/>
-<wire x1="19.812" y1="33.528" x2="15.875" y2="31.115" width="1.27" layer="16"/>
-<wire x1="19.812" y1="33.528" x2="22.86" y2="33.528" width="1.27" layer="16"/>
+<wire x1="19.812" y1="32.258" x2="15.875" y2="31.115" width="1.27" layer="16"/>
+<wire x1="19.812" y1="32.258" x2="22.86" y2="32.258" width="1.27" layer="16"/>
 <contactref element="DISPLAY" pad="4"/>
 <contactref element="IC2" pad="24"/>
 <contactref element="IC3" pad="24"/>
@@ -2301,7 +2301,7 @@ design rules under a new name.</description>
 <wire x1="50.8" y1="29.21" x2="50.8" y2="31.75" width="1.27" layer="16"/>
 <wire x1="50.8" y1="31.75" x2="48.514" y2="33.782" width="1.27" layer="16"/>
 <wire x1="48.514" y1="33.782" x2="23.114" y2="33.782" width="1.27" layer="16"/>
-<wire x1="23.114" y1="33.782" x2="22.86" y2="33.528" width="1.27" layer="16"/>
+<wire x1="23.114" y1="33.782" x2="22.86" y2="32.258" width="1.27" layer="16"/>
 <wire x1="50.8" y1="28.194" x2="50.8" y2="29.21" width="1.016" layer="16"/>
 <wire x1="78.994" y1="2.794" x2="94.234" y2="2.794" width="1.27" layer="16"/>
 <wire x1="94.234" y1="2.794" x2="99.314" y2="8.89" width="1.27" layer="16"/>
@@ -2343,19 +2343,19 @@ design rules under a new name.</description>
 <contactref element="U1" pad="6"/>
 <contactref element="U2" pad="2"/>
 <wire x1="17.272" y1="25.908" x2="15.875" y2="26.035" width="0.8128" layer="16"/>
-<wire x1="19.812" y1="25.908" x2="17.272" y2="25.908" width="0.8128" layer="16"/>
+<wire x1="19.812" y1="24.638" x2="17.272" y2="25.908" width="0.8128" layer="16"/>
 <wire x1="37.084" y1="31.75" x2="38.1" y2="29.21" width="0.8128" layer="16"/>
 <wire x1="34.163" y1="31.75" x2="37.084" y2="31.75" width="0.8128" layer="16"/>
-<wire x1="32.258" y1="30.099" x2="34.163" y2="31.75" width="0.8128" layer="16"/>
-<wire x1="21.971" y1="30.099" x2="32.258" y2="30.099" width="0.8128" layer="16"/>
-<wire x1="19.812" y1="25.908" x2="21.971" y2="30.099" width="0.8128" layer="16"/>
+<wire x1="30.988" y1="28.829" x2="34.163" y2="31.75" width="0.8128" layer="16"/>
+<wire x1="20.701" y1="28.829" x2="30.988" y2="28.829" width="0.8128" layer="16"/>
+<wire x1="19.812" y1="24.638" x2="20.701" y2="28.829" width="0.8128" layer="16"/>
 </signal>
 <signal name="N$43">
 <contactref element="R1" pad="2"/>
 <contactref element="U2" pad="1"/>
 <contactref element="RESET" pad="2"/>
-<wire x1="22.86" y1="25.908" x2="29.464" y2="25.908" width="1.016" layer="16"/>
-<wire x1="29.464" y1="25.908" x2="30.48" y2="24.892" width="1.016" layer="16"/>
+<wire x1="22.86" y1="24.638" x2="28.194" y2="24.638" width="1.016" layer="16"/>
+<wire x1="28.194" y1="24.638" x2="30.48" y2="24.892" width="1.016" layer="16"/>
 <wire x1="30.48" y1="24.892" x2="31.242" y2="24.892" width="1.016" layer="16"/>
 <wire x1="31.242" y1="24.892" x2="35.56" y2="29.21" width="1.016" layer="16"/>
 </signal>
@@ -2476,9 +2476,9 @@ design rules under a new name.</description>
 <wire x1="58.42" y1="8.89" x2="57.15" y2="10.16" width="1.27" layer="16"/>
 <contactref element="IC5" pad="2"/>
 <wire x1="67.818" y1="16.51" x2="67.818" y2="15.494" width="1.27" layer="16"/>
-<wire x1="15.875" y1="23.495" x2="26.797" y2="23.495" width="1.27" layer="16"/>
-<wire x1="26.797" y1="23.495" x2="27.94" y2="22.352" width="1.27" layer="16"/>
-<wire x1="27.94" y1="22.352" x2="30.48" y2="22.352" width="1.27" layer="16"/>
+<wire x1="15.875" y1="23.495" x2="16.637" y2="23.495" width="1.27" layer="16"/>
+<wire x1="16.637" y1="23.495" x2="19.05" y2="22.352" width="1.27" layer="16"/>
+<wire x1="19.05" y1="22.352" x2="30.48" y2="22.352" width="1.27" layer="16"/>
 <contactref element="POT_PWR1" pad="1"/>
 <contactref element="POT_PWR" pad="1"/>
 <contactref element="POT_PWR2" pad="1"/>

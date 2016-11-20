@@ -2063,7 +2063,7 @@ design rules under a new name.</description>
 <attribute name="OC_FARNELL" value="1667008" x="60.96" y="19.05" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
 <element name="R1" library="rcl" package="0207/7" value="10k" x="22.86" y="28.448" rot="R270"/>
-<element name="R2" library="rcl" package="0207/7" value="220" x="11.938" y="18.796" rot="R180"/>
+<element name="R2" library="rcl" package="0207/7" value="220" x="11.938" y="20.066" rot="R180"/>
 <element name="R24" library="rcl" package="0207/7" value="1M" x="64.77" y="17.78" rot="R270"/>
 <element name="R3" library="rcl" package="0207/7" value="270" x="19.812" y="28.448" rot="R90"/>
 <element name="MIDI_IN" library="adafruit" package="CP-2350" value="MIDIJACK" x="12.7" y="0"/>
@@ -2264,7 +2264,7 @@ design rules under a new name.</description>
 <contactref element="U1" pad="2"/>
 <contactref element="R2" pad="2"/>
 <wire x1="10.668" y1="27.813" x2="10.668" y2="21.59" width="0.8128" layer="16"/>
-<wire x1="10.668" y1="21.59" x2="8.128" y2="18.796" width="0.8128" layer="16"/>
+<wire x1="10.668" y1="21.59" x2="8.128" y2="20.066" width="0.8128" layer="16"/>
 <wire x1="8.255" y1="28.575" x2="10.668" y2="27.813" width="0.8128" layer="16"/>
 <wire x1="5.715" y1="29.083" x2="4.445" y2="29.845" width="0.8128" layer="16"/>
 <wire x1="8.255" y1="28.575" x2="5.715" y2="29.083" width="0.8128" layer="16"/>
@@ -2272,7 +2272,7 @@ design rules under a new name.</description>
 <signal name="N$8">
 <contactref element="R2" pad="1"/>
 <contactref element="MIDI_IN" pad="4"/>
-<wire x1="17.78" y1="15.02" x2="15.748" y2="18.796" width="0.8128" layer="16"/>
+<wire x1="17.78" y1="15.02" x2="15.748" y2="20.066" width="0.8128" layer="16"/>
 </signal>
 <signal name="+5V">
 <contactref element="U2" pad="7"/>
