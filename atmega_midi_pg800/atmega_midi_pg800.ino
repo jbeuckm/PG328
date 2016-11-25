@@ -1,6 +1,20 @@
 #include <EEPROM.h>
 #include <MIDI.h>
 
+#include <SPI.h>
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+#include <gfxfont.h>
+
+#include "RotaryEncoder.h"
+
+#define OLED_RESET 4
+Adafruit_SSD1306 display(OLED_RESET);
+
+RotaryEncoder wheel;
+
+
 #define CTRL_RESET 121
 
 #define READY 10
@@ -63,6 +77,11 @@ void handleControlChange(byte channel, byte number, byte value)
 }
 
 void setup() {
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3C (for the 128x32)
+
+  wheel.setup();
+  attachInterrupt(0, interruptA, RISING); // set an interrupt on PinA, looking for a rising edge signal and executing the "PinA" Interrupt Service Routine (below)
+  attachInterrupt(1, interruptB, RISING); // set an interrupt on PinB, looking for a rising edge signal and executing the "PinB" Interrupt Service Routine (below)
 
   pinMode(READY, OUTPUT);
   digitalWrite(READY, LOW);
@@ -84,7 +103,31 @@ void setup() {
   MIDI.begin(selectedChannel);
 }
 
+void interruptA() {
+  wheel.PinA();
+}
+void interruptB() {
+  wheel.PinB();
+}
+
 void loop() {
   MIDI.read();
+  updateDisplay();
 }
+
+
+void updateDisplay() {
+  display.clearDisplay();
+  
+  display.setCursor(0,0);
+  display.setTextSize(1);
+  display.setTextColor(WHITE);
+    
+  display.print("VCF Freq\n\n");
+  display.setTextSize(2);
+  display.print(String(wheel.getPosition()));
+  
+  display.display();
+}
+
 
