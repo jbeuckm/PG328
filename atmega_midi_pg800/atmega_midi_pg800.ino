@@ -8,50 +8,22 @@
 #include <gfxfont.h>
 
 #include "RotaryEncoder.h"
+#include "PG800.h"
 
 #define OLED_RESET 4
 Adafruit_SSD1306 display(OLED_RESET);
 
 RotaryEncoder wheel;
 
+PG800 pg800(10, 8, 9);
 
 #define CTRL_RESET 121
-
-#define READY 10
-#define CLOCK_IN 8
-#define DATA_OUT 9
-
 #define MIDI_CHANNEL_ADDRESS 0
 
 MIDI_CREATE_DEFAULT_INSTANCE();
 
 byte selectedChannel = 3;
 
-
-void sendByte(byte data) {
-  
-  digitalWrite(READY, HIGH);
-  
-  byte mask = B1000000;
-  
-  for (int i=0; i<8; i++) {
-    while (digitalRead(CLOCK_IN) == LOW) {
-      delayMicroseconds(1);
-    }
-    if (data & mask) {
-      digitalWrite(DATA_OUT, HIGH);
-    } else {
-      digitalWrite(DATA_OUT, LOW);
-    }
-    while (digitalRead(CLOCK_IN) == HIGH) {
-      delayMicroseconds(1);
-    }
-    mask >>= 1;
-  }
-  
-  digitalWrite(READY, LOW);
-  
-}
 
 void handleSystemExclusive(byte *message, unsigned size) {
 
@@ -82,14 +54,6 @@ void setup() {
   wheel.setup();
   attachInterrupt(0, interruptA, RISING); // set an interrupt on PinA, looking for a rising edge signal and executing the "PinA" Interrupt Service Routine (below)
   attachInterrupt(1, interruptB, RISING); // set an interrupt on PinB, looking for a rising edge signal and executing the "PinB" Interrupt Service Routine (below)
-
-  pinMode(READY, OUTPUT);
-  digitalWrite(READY, LOW);
-
-  pinMode(DATA_OUT, OUTPUT);
-  digitalWrite(DATA_OUT, LOW);
-
-  pinMode(CLOCK_IN, INPUT);
 
   selectedChannel = EEPROM.read(MIDI_CHANNEL_ADDRESS);
   if (selectedChannel > 16) {
