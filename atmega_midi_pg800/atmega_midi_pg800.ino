@@ -83,14 +83,21 @@ void loop() {
 void updateDisplay() {
   display.clearDisplay();
   
-  display.setCursor(0,0);
-  display.setTextSize(1);
   display.setTextColor(WHITE);
+
+  display.setCursor(3,3);
+  display.setTextSize(1);
+  display.print("DCO2 Fine Tune");
+
+  display.drawRect(0,0,128,13,WHITE);
     
-  display.print("VCF Freq\n\n");
+
+  display.setCursor(4,16);
   display.setTextSize(2);
   display.print(String(wheel.getPosition()));
-  
+
+  display.drawRect(0,13,128,19,WHITE);
+
   display.display();
 }
 
