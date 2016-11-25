@@ -2,6 +2,8 @@
 
 class RotaryEncoder {
 
+  int SWITCH_PIN; // will be pulled high and activated by connecting to 0V
+
   int pinA; // Our first hardware interrupt pin is digital pin 2
   int pinB; // Our second hardware interrupt pin is digital pin 3
   volatile byte aFlag; // let's us know when we're expecting a rising edge on pinA to signal that the encoder has arrived at a detent
@@ -15,9 +17,8 @@ public:
   void PinA();
   void PinB();
 
-  RotaryEncoder();
+  RotaryEncoder(int switchPin);
 
-  void setup();
   byte getPosition();
 
 };

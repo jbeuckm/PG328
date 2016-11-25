@@ -13,7 +13,7 @@
 #define OLED_RESET 4
 Adafruit_SSD1306 display(OLED_RESET);
 
-RotaryEncoder wheel;
+RotaryEncoder wheel(4);
 
 PG800 pg800(10, 8, 9);
 
@@ -51,7 +51,6 @@ void handleControlChange(byte channel, byte number, byte value)
 void setup() {
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3C (for the 128x32)
 
-  wheel.setup();
   attachInterrupt(0, interruptA, RISING); // set an interrupt on PinA, looking for a rising edge signal and executing the "PinA" Interrupt Service Routine (below)
   attachInterrupt(1, interruptB, RISING); // set an interrupt on PinB, looking for a rising edge signal and executing the "PinB" Interrupt Service Routine (below)
 
@@ -87,7 +86,7 @@ void updateDisplay() {
 
   display.setCursor(3,3);
   display.setTextSize(1);
-  display.print("DCO2 Fine Tune");
+  display.print("Mixer DCO1 Level");
 
   display.drawRect(0,0,128,13,WHITE);
     
