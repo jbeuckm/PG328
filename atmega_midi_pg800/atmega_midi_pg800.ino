@@ -38,6 +38,7 @@ void setup() {
   attachInterrupt(0, interruptA, RISING); // set an interrupt on PinA, looking for a rising edge signal and executing the "PinA" Interrupt Service Routine (below)
   attachInterrupt(1, interruptB, RISING); // set an interrupt on PinB, looking for a rising edge signal and executing the "PinB" Interrupt Service Routine (below)
   wheel.setHandleButtonDown(buttonDown);
+  wheel.setHandleButtonUp(buttonUp);
   wheel.setHandleRotate(rotateWheel);
   
   MIDI.setHandleSystemExclusive(handleSystemExclusive);
@@ -61,7 +62,10 @@ void loop() {
 
 boolean controlMode = false;
 void buttonDown() {
-  controlMode = !controlMode;
+  controlMode = true;
+}
+void buttonUp() {
+  controlMode = false;
 }
 
 
