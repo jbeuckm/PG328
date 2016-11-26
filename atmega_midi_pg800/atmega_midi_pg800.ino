@@ -22,11 +22,13 @@ void handleSystemExclusive(byte *message, unsigned size) {
 
   if (message[1] == 0x41) // manufacturer ID
   if (message[2] == 0x36) // IPR mode
-  if (message[3] == 0)    // device ID
-  if (message[4] == 0x24) // JX-10
+  if (message[3] == 0x00) // device ID
+  if (message[4] == 0x24) // ???
+  if (message[5] == 0x20) // ???
+  if (message[6] == 0x01) // Tone
   {  
-    MIDI.begin();
-    
+    pg800.setParam(message[7]);
+    pg800.setValue(message[8]);
   }
 }
 

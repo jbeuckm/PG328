@@ -90,6 +90,11 @@ void PG800::prevParam() {
     paramIndex--;
   } while (strcmp(paramName(), "") == 0);
 }
+void PG800::setParam(byte param) {
+  if (param < 0) return;
+  if (param >= 48) return;
+  paramIndex = param;
+}
 
 void PG800::incValue() {
   if (param_values[paramIndex] == 127) return;
@@ -99,6 +104,12 @@ void PG800::decValue() {
   if (param_values[paramIndex] == 0) return;
   param_values[paramIndex]--;
 }
+void PG800::setValue(byte value) {
+  if (value < 0) return;
+  if (value >= 128) return;
+  param_values[paramIndex] = value;
+}
+
 
 
 PG800::PG800(int ready_pin, int clock_in_pin, int data_out_pin) {

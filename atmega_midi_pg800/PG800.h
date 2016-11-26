@@ -21,8 +21,10 @@ public:
   byte paramValue();
   void nextParam();
   void prevParam();
+  void setParam(byte param);
 
   void incValue();
   void decValue();
+  void setValue(byte value);
 };
 
