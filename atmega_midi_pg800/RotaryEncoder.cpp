@@ -6,6 +6,9 @@ void RotaryEncoder::PinA(){
   reading = PIND & 0xC; // read all eight pin values then strip away all but pinA and pinB's values
   if(reading == B00001100 && aFlag) { //check that we have both pins at detent (HIGH) and that we are expecting detent on this pin's rising edge
     encoderPos --; //decrement the encoder's position count
+    
+    if (mRotateCallback != 0) mRotateCallback(-1);
+    
     bFlag = 0; //reset flags for the next turn
     aFlag = 0; //reset flags for the next turn
   }
@@ -18,6 +21,9 @@ void RotaryEncoder::PinB(){
   reading = PIND & 0xC; //read all eight pin values then strip away all but pinA and pinB's values
   if (reading == B00001100 && bFlag) { //check that we have both pins at detent (HIGH) and that we are expecting detent on this pin's rising edge
     encoderPos ++; //increment the encoder's position count
+    
+    if (mRotateCallback != 0) mRotateCallback(1);
+    
     bFlag = 0; //reset flags for the next turn
     aFlag = 0; //reset flags for the next turn
   }
@@ -39,7 +45,6 @@ RotaryEncoder::RotaryEncoder(int buttonPin) {
   aFlag = 0; // let's us know when we're expecting a rising edge on pinA to signal that the encoder has arrived at a detent
   bFlag = 0; // let's us know when we're expecting a rising edge on pinB to signal that the encoder has arrived at a detent (opposite direction to when aFlag is set)
   encoderPos = 0; //this variable stores our current value of encoder position. Change to int or uin16_t instead of byte if you want to record a larger range than 0-255
-  oldEncPos = 0; //stores the last encoder position value so we can compare to the current reading and see if it has changed (so we know when to print to the serial monitor)
   reading = 0; //somewhere to store the direct values we read from our interrupt pins before checking to see if we have moved a whole detent
 
   pinMode(BUTTON_PIN, INPUT_PULLUP);
