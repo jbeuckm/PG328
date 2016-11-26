@@ -1,5 +1,8 @@
 #include "Arduino.h"
 
+#define PG800_SYSEX_OFFSET 0x0b
+#define PG800_PARAM_OFFSET 0x80
+
 class PG800 {
 
   byte READY_PIN;

@@ -18,15 +18,14 @@ PG800 pg800(10, 8, 9);
 
 MIDI_CREATE_DEFAULT_INSTANCE();
 
-byte selectedChannel = 3;
-
 void handleSystemExclusive(byte *message, unsigned size) {
 
-  if (message[1] == 0x77) // manufacturer ID
-  if (message[2] == 0x10)    // model ID
-  if (message[3] == 0) {  // device ID
-    selectedChannel = message[4] % 17;
-    MIDI.begin(selectedChannel);
+  if (message[1] == 0x41) // manufacturer ID
+  if (message[2] == 0x36) // IPR mode
+  if (message[3] == 0)    // device ID
+  if (message[4] == 0x24) // JX-10
+  {  
+    MIDI.begin();
     
   }
 }
@@ -43,7 +42,7 @@ void setup() {
   
   MIDI.setHandleSystemExclusive(handleSystemExclusive);
   
-  MIDI.begin(selectedChannel);
+  MIDI.begin();
 }
 
 void interruptA() {
