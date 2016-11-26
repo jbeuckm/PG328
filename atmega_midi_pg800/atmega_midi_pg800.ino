@@ -69,9 +69,9 @@ void buttonDown() {
 void rotateWheel(int direction) {
   if (controlMode) {
     if (direction == 1) {
-      pg800.nextControl();
+      pg800.nextParam();
     } else {
-      pg800.prevControl();
+      pg800.prevParam();
     }
   } else {
     if (direction == 1) {
@@ -89,7 +89,7 @@ void updateDisplay() {
 
   display.setCursor(3,3);
   display.setTextSize(1);
-  display.print(pg800.controlName());
+  display.print(pg800.paramName());
 
   if (controlMode)
   display.drawRect(0,0,128,13,WHITE);
@@ -97,7 +97,7 @@ void updateDisplay() {
 
   display.setCursor(4,16);
   display.setTextSize(2);
-  display.print(String(pg800.controlValue()));
+  display.print(String(pg800.paramValue()));
 
   if (!controlMode)
   display.drawRect(0,13,128,19,WHITE);
