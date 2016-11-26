@@ -16,6 +16,23 @@ RotaryEncoder wheel(4);
 
 PG800 pg800(10, 8, 9);
 
+byte muxAddress;
+byte potValueIndex;
+int potValues[48];
+int oldValue, newValue;
+#define MOMENTUM .9
+#define FORCE .1
+
+// mapping pots to PG800 params
+byte potMap[48] = {
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+  10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+  20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
+  30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
+  40, 41, 42, 43, 44, 45, 46, 47
+};
+
+
 MIDI_CREATE_DEFAULT_INSTANCE();
 
 void handleSystemExclusive(byte *message, unsigned size) {
@@ -42,6 +59,9 @@ void setup() {
   wheel.setHandleButtonDown(buttonDown);
   wheel.setHandleButtonUp(buttonUp);
   wheel.setHandleRotate(rotateWheel);
+
+  DDRB = B1111; // mux address lines as outputs
+  initPotValues();
   
   MIDI.setHandleSystemExclusive(handleSystemExclusive);
   
@@ -55,8 +75,49 @@ void interruptB() {
   wheel.PinB();
 }
 
+
+void initPotValues() {
+  for (muxAddress=0; muxAddress<16; muxAddress++) {
+    PORTB = muxAddress;
+    analogRead(A0);
+    potValues[muxAddress] = analogRead(A0);
+    analogRead(A1);
+    potValues[16 + muxAddress] = analogRead(A1);
+    analogRead(A2);
+    potValues[32 + muxAddress] = analogRead(A2);
+  }
+}
+
+
 void loop() {
+
+  potValueIndex = 0;
+
+  for (muxAddress=0; muxAddress<16; muxAddress++) {
+    PORTB = muxAddress;
+
+    oldValue = potValues[potValueIndex];
+    analogRead(A0); // toss the initial reading
+    // average over previous readings
+    newValue = MOMENTUM * oldValue + FORCE * analogRead(A0);
+    if ((oldValue >> 3) != (newValue >> 3)) {
+      // scaled value change happened
+      byte paramIndex = potMap[potValueIndex];
+      pg800.setParam(paramIndex);
+      pg800.setValue(newValue >> 3);
+    }
+    potValues[potValueIndex] = newValue;
+    potValueIndex++;
+    
+    potValues[potValueIndex] = analogRead(A1);
+    potValueIndex++;
+    
+    potValues[potValueIndex] = analogRead(A2);
+    potValueIndex++;
+  }
+  
   MIDI.read();
+  
   wheel.checkButton();
   updateDisplay();
 }
