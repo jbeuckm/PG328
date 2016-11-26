@@ -25,10 +25,15 @@ void RotaryEncoder::PinB(){
   sei(); //restart interrupts
 }
 
-RotaryEncoder::RotaryEncoder(int switchPin) {
+RotaryEncoder::RotaryEncoder(int buttonPin) {
 
-  SWITCH_PIN = switchPin;
-  
+  buttonState = false;
+  BUTTON_PIN = buttonPin;
+
+  mRotateCallback = 0;
+  mButtonDownCallback = 0;
+  mButtonUpCallback = 0;
+
   pinA = 2; // Our first hardware interrupt pin is digital pin 2
   pinB = 3; // Our second hardware interrupt pin is digital pin 3
   aFlag = 0; // let's us know when we're expecting a rising edge on pinA to signal that the encoder has arrived at a detent
@@ -37,7 +42,7 @@ RotaryEncoder::RotaryEncoder(int switchPin) {
   oldEncPos = 0; //stores the last encoder position value so we can compare to the current reading and see if it has changed (so we know when to print to the serial monitor)
   reading = 0; //somewhere to store the direct values we read from our interrupt pins before checking to see if we have moved a whole detent
 
-  pinMode(SWITCH_PIN, INPUT_PULLUP);
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
   pinMode(pinA, INPUT_PULLUP); // set pinA as an input, pulled HIGH to the logic voltage (5V or 3.3V for most cases)
   pinMode(pinB, INPUT_PULLUP); // set pinB as an input, pulled HIGH to the logic voltage (5V or 3.3V for most cases)
 }
@@ -46,5 +51,23 @@ byte RotaryEncoder::getPosition() {
   return encoderPos;
 }
 
+boolean RotaryEncoder::checkButton() {
+  boolean newState = digitalRead(BUTTON_PIN);
 
+  if (newState && !buttonState) {
+    if (mButtonDownCallback != 0) mButtonDownCallback();
+    buttonState = newState;
+  }
+  else if (!newState && buttonState) {
+    if (mButtonUpCallback != 0) mButtonUpCallback();
+    buttonState = newState;
+  }
+
+  return newState;
+}
+
+
+void RotaryEncoder::setHandleRotate(void (*fptr)(int direction)) { mRotateCallback = fptr; }
+void RotaryEncoder::setHandleButtonDown(void (*fptr)(void)) { mButtonDownCallback = fptr; }
+void RotaryEncoder::setHandleButtonUp(void (*fptr)(void)) { mButtonUpCallback = fptr; }
 
