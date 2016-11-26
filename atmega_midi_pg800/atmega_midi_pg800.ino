@@ -62,17 +62,17 @@ void loop() {
 }
 
 
-boolean controlMode = false;
+boolean changeParam = false;
 void buttonDown() {
-  controlMode = true;
+  changeParam = true;
 }
 void buttonUp() {
-  controlMode = false;
+  changeParam = false;
 }
 
 
 void rotateWheel(int direction) {
-  if (controlMode) {
+  if (changeParam) {
     if (direction == 1) {
       pg800.nextParam();
     } else {
@@ -96,7 +96,7 @@ void updateDisplay() {
   display.setTextSize(1);
   display.print(pg800.paramName());
 
-  if (controlMode)
+  if (changeParam)
   display.drawRect(0,0,128,13,WHITE);
     
 
@@ -104,7 +104,7 @@ void updateDisplay() {
   display.setTextSize(2);
   display.print(String(pg800.paramValue()));
 
-  if (!controlMode)
+  if (!changeParam)
   display.drawRect(0,13,128,19,WHITE);
 
   display.display();
