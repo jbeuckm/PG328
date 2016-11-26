@@ -40,8 +40,6 @@ RotaryEncoder::RotaryEncoder(int buttonPin) {
   mButtonDownCallback = 0;
   mButtonUpCallback = 0;
 
-  pinA = 2; // Our first hardware interrupt pin is digital pin 2
-  pinB = 3; // Our second hardware interrupt pin is digital pin 3
   aFlag = 0; // let's us know when we're expecting a rising edge on pinA to signal that the encoder has arrived at a detent
   bFlag = 0; // let's us know when we're expecting a rising edge on pinB to signal that the encoder has arrived at a detent (opposite direction to when aFlag is set)
   encoderPos = 0; //this variable stores our current value of encoder position. Change to int or uin16_t instead of byte if you want to record a larger range than 0-255
@@ -59,11 +57,11 @@ byte RotaryEncoder::getPosition() {
 boolean RotaryEncoder::checkButton() {
   boolean newState = digitalRead(BUTTON_PIN);
 
-  if (newState && !buttonState) {
+  if (!newState && buttonState) {
     if (mButtonDownCallback != 0) mButtonDownCallback();
     buttonState = newState;
   }
-  else if (!newState && buttonState) {
+  else if (newState && !buttonState) {
     if (mButtonUpCallback != 0) mButtonUpCallback();
     buttonState = newState;
   }
@@ -75,4 +73,5 @@ boolean RotaryEncoder::checkButton() {
 void RotaryEncoder::setHandleRotate(void (*fptr)(int direction)) { mRotateCallback = fptr; }
 void RotaryEncoder::setHandleButtonDown(void (*fptr)(void)) { mButtonDownCallback = fptr; }
 void RotaryEncoder::setHandleButtonUp(void (*fptr)(void)) { mButtonUpCallback = fptr; }
+
 

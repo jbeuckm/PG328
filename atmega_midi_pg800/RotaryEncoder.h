@@ -1,5 +1,9 @@
 #include "Arduino.h"
 
+#define pinA 2
+#define pinB 3
+
+
 class RotaryEncoder {
 
 private:
@@ -7,8 +11,6 @@ private:
   boolean buttonState;
 
 
-  int pinA; // Our first hardware interrupt pin is digital pin 2
-  int pinB; // Our second hardware interrupt pin is digital pin 3
   volatile byte aFlag; // let's us know when we're expecting a rising edge on pinA to signal that the encoder has arrived at a detent
   volatile byte bFlag; // let's us know when we're expecting a rising edge on pinB to signal that the encoder has arrived at a detent (opposite direction to when aFlag is set)
   volatile byte encoderPos; //this variable stores our current value of encoder position. Change to int or uin16_t instead of byte if you want to record a larger range than 0-255
@@ -29,9 +31,9 @@ public:
   byte getPosition();
   boolean checkButton();
 
-  inline void setHandleRotate(void (*fptr)(int direction));
-  inline void setHandleButtonDown(void (*fptr)(void));        
-  inline void setHandleButtonUp(void (*fptr)(void));        
+  void setHandleRotate(void (*fptr)(int direction));
+  void setHandleButtonDown(void (*fptr)(void));        
+  void setHandleButtonUp(void (*fptr)(void));        
 };
 
 
