@@ -133,7 +133,7 @@ void PG800::sendByte(byte data) {
   
   digitalWrite(READY_PIN, HIGH);
   
-  byte mask = B1000000;
+  byte mask = B10000000;
   
   for (int i=0; i<8; i++) {
     while (digitalRead(CLOCK_IN_PIN) == LOW) {
