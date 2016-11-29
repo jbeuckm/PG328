@@ -19,6 +19,7 @@ PG800 pg800(6, 5, 7);
 byte muxAddress;
 byte potValueIndex;
 int potValues[48];
+boolean ignorePot[48];
 int oldValue, newValue;
 #define MOMENTUM .9
 #define FORCE .1
@@ -52,6 +53,11 @@ void handleSystemExclusive(byte *message, unsigned size) {
 
 
 void setup() {
+
+  for (int i=0; i<48; i++) {
+    ignorePot[i] = true;
+  }
+  
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3C (for the 128x32)
 
   attachInterrupt(0, interruptA, RISING); // set an interrupt on PinA, looking for a rising edge signal and executing the "PinA" Interrupt Service Routine (below)
@@ -100,7 +106,7 @@ void loop() {
     analogRead(A0); // toss the initial reading
     // average over previous readings
     newValue = MOMENTUM * oldValue + FORCE * analogRead(A0);
-    if ((oldValue >> 3) != (newValue >> 3)) {
+    if (!ignorePot[potValueIndex] && ((oldValue >> 3) != (newValue >> 3)) ) {
       // scaled value change happened
       byte paramIndex = potMap[potValueIndex];
       pg800.setParam(paramIndex);

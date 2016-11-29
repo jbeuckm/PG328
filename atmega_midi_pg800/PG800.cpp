@@ -101,6 +101,9 @@ void PG800::setParam(byte param) {
 void PG800::incValue() {
   if (param_values[paramIndex] == 127) return;
   param_values[paramIndex]++;
+
+  sendByte(CONTROL_BYTE_OFFSET + paramIndex);
+  sendByte(param_values[paramIndex] % 128);
 }
 void PG800::decValue() {
   if (param_values[paramIndex] == 0) return;
@@ -113,6 +116,9 @@ void PG800::setValue(byte value) {
   if (value < 0) return;
   if (value >= 128) return;
   param_values[paramIndex] = value;
+
+  sendByte(CONTROL_BYTE_OFFSET + paramIndex);
+  sendByte(param_values[paramIndex] % 128);
 }
 
 
@@ -136,9 +142,9 @@ PG800::PG800(int ready_pin, int clock_in_pin, int data_out_pin) {
 
 void PG800::sendByte(byte data) {
   
-  digitalWrite(READY_PIN, HIGH);
-  
   byte mask = B10000000;
+  
+  digitalWrite(READY_PIN, HIGH);
   
   for (int i=0; i<8; i++) {
     while (digitalRead(CLOCK_IN_PIN) == LOW) {
