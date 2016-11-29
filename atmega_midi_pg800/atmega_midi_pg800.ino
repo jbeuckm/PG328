@@ -14,7 +14,7 @@ Adafruit_SSD1306 display(OLED_RESET);
 
 RotaryEncoder wheel(4);
 
-PG800 pg800(10, 8, 9);
+PG800 pg800(6, 5, 7);
 
 byte muxAddress;
 byte potValueIndex;
