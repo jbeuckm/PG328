@@ -68,6 +68,8 @@ byte param_values[48] = {
 };
 
 
+#define CONTROL_BYTE_OFFSET 0x80
+
 char buffer[20];
 
 char *PG800::paramName() {
@@ -103,6 +105,9 @@ void PG800::incValue() {
 void PG800::decValue() {
   if (param_values[paramIndex] == 0) return;
   param_values[paramIndex]--;
+
+  sendByte(CONTROL_BYTE_OFFSET + paramIndex);
+  sendByte(param_values[paramIndex] % 128);
 }
 void PG800::setValue(byte value) {
   if (value < 0) return;
@@ -140,9 +145,9 @@ void PG800::sendByte(byte data) {
       delayMicroseconds(1);
     }
     if (data & mask) {
-      digitalWrite(DATA_OUT_PIN, HIGH);
-    } else {
       digitalWrite(DATA_OUT_PIN, LOW);
+    } else {
+      digitalWrite(DATA_OUT_PIN, HIGH);
     }
     while (digitalRead(CLOCK_IN_PIN) == HIGH) {
       delayMicroseconds(1);
