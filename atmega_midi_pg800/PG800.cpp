@@ -68,8 +68,6 @@ volatile byte param_values[48] = {
 };
 
 
-#define CONTROL_BYTE_OFFSET 0x80
-
 char buffer[20];
 
 int PG800::getParamIndex() {
@@ -111,23 +109,20 @@ void PG800::incValue() {
   if (param_values[paramIndex] == 127) return;
   param_values[paramIndex]++;
 
-  sendByte(CONTROL_BYTE_OFFSET + paramIndex);
-  sendByte(param_values[paramIndex]);
+  paramChanged.setBit(paramIndex, true);
 }
 void PG800::decValue() {
   if (param_values[paramIndex] == 0) return;
   param_values[paramIndex]--;
 
-  sendByte(CONTROL_BYTE_OFFSET + paramIndex);
-  sendByte(param_values[paramIndex]);
+  paramChanged.setBit(paramIndex, true);
 }
 void PG800::setValue(byte value) {
   if (value < 0) return;
   if (value >= 128) return;
   param_values[paramIndex] = value;
 
-  sendByte(CONTROL_BYTE_OFFSET + paramIndex);
-  sendByte(param_values[paramIndex]);
+  paramChanged.setBit(paramIndex, true);
 }
 
 
@@ -177,5 +172,11 @@ void PG800::sendByte(byte data) {
 
 void PG800::sync() {
   int updatedParamIndex = paramChanged.addressOfFirstSet();
+
+  if ((updatedParamIndex >= 0) && (updatedParamIndex < 48)) {
+    sendByte(PG800_PARAM_OFFSET + updatedParamIndex);
+    sendByte(param_values[updatedParamIndex]);
+    paramChanged.setBit(updatedParamIndex, false);
+  }
 }
 
