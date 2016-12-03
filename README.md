@@ -9,3 +9,5 @@ Status:
 * 12/3/16: Stable control with encoder. Hold button to rotate parameter or just rotate to change value. Hold button down three seconds to assign slider of highest value to the current parameter.
 
 ![](prototype.JPG)
+
+![](layout.png)
