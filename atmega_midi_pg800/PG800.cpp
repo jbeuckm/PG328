@@ -72,6 +72,11 @@ byte param_values[48] = {
 
 char buffer[20];
 
+int PG800::getParamIndex() {
+  return paramIndex;
+}
+
+
 char *PG800::paramName() {
   strcpy_P(buffer, (char*)pgm_read_word(&(string_table[paramIndex])));
   return buffer;

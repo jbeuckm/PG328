@@ -13,19 +13,23 @@ Adafruit_SSD1306 display(OLED_RESET);
 bool displayNeedsUpdate = true;
 
 RotaryEncoder wheel(4);
+boolean changeParamMode = false;
 
 PG800 pg800(6, 5, 7);
 #define SYSEX_OFFSET 0x0B
 
 byte muxAddress;
 byte potValueIndex;
-int potValues[48];
 boolean ignorePot[48];
+
+int potAssigned = -1;
+unsigned long potAssignHoldStartTime;
+
+int potValues[48];
 int oldValue, newValue;
 #define MOMENTUM .9
 #define FORCE .1
 
-int potAssigned = -1;
 
 // mapping pots to PG800 params
 byte potAssignMap[48] = {
@@ -105,6 +109,42 @@ void initPotValues() {
 }
 
 
+int findGreatestValuePot() {
+  
+  int greatestPotValue = 0;
+  int greatestPotValueIndex = 0;
+  int readingValue;
+  
+  potValueIndex = 0;
+
+  for (muxAddress=0; muxAddress<16; muxAddress++) {
+    PORTB = muxAddress;
+
+    readingValue = analogRead(A0);
+    if (readingValue > greatestPotValue) {
+      greatestPotValue = readingValue;
+      greatestPotValueIndex = potValueIndex;
+    }
+    potValueIndex++;
+
+    readingValue = analogRead(A1);
+    if (readingValue > greatestPotValue) {
+      greatestPotValue = readingValue;
+      greatestPotValueIndex = potValueIndex;
+    }
+    potValueIndex++;
+
+    readingValue = analogRead(A2);
+    if (readingValue > greatestPotValue) {
+      greatestPotValue = readingValue;
+      greatestPotValueIndex = potValueIndex;
+    }
+    potValueIndex++;
+  }
+
+  return greatestPotValueIndex;
+}
+
 void loop() {
 
   potValueIndex = 0;
@@ -137,6 +177,14 @@ void loop() {
   
   wheel.checkButton();
 
+  if (changeParamMode && ((millis() - potAssignHoldStartTime) > 3000)) {
+    int greatestPotValueIndex = findGreatestValuePot();
+    potAssignMap[greatestPotValueIndex] = pg800.getParamIndex();
+    potAssigned = greatestPotValueIndex;
+    displayNeedsUpdate = true;
+    potAssignHoldStartTime = millis();
+  }
+
   if (displayNeedsUpdate) {
     updateDisplay();
     displayNeedsUpdate = false;
@@ -144,10 +192,10 @@ void loop() {
 }
 
 
-boolean changeParamMode = false;
 void buttonDown() {
   changeParamMode = true;
   displayNeedsUpdate = true;
+  potAssignHoldStartTime = millis();
 }
 void buttonUp() {
   changeParamMode = false;
@@ -157,6 +205,7 @@ void buttonUp() {
 
 void rotateWheel(int direction) {
   if (changeParamMode) {
+    potAssignHoldStartTime = millis();
     if (direction == 1) {
       pg800.nextParam();
     } else {
@@ -174,8 +223,18 @@ void rotateWheel(int direction) {
 
 void updateDisplay() {
   display.clearDisplay();
-  
   display.setTextColor(WHITE);
+
+  if (potAssigned != -1) {
+    display.setCursor(3,3);
+    display.setTextSize(1);
+    display.print(potAssigned);
+    display.print(" --> ");
+    display.print(pg800.paramName());
+    display.display();
+    potAssigned = -1;
+    return;
+  }
 
   display.setCursor(3,3);
   display.setTextSize(1);

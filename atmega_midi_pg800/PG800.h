@@ -22,6 +22,7 @@ public:
   void nextParam();
   void prevParam();
   void setParam(byte param);
+  int getParamIndex();
 
   void incValue();
   void decValue();
