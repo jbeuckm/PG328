@@ -166,7 +166,6 @@ void PG800::sendByte(byte data) {
   }
   
   digitalWrite(READY_PIN, LOW);
-  delayMicroseconds(5);
 }
 
 

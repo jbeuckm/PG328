@@ -153,18 +153,19 @@ void loop() {
   for (muxAddress=0; muxAddress<16; muxAddress++) {
     PORTB = muxAddress;
 
-    oldValue = potValues[potValueIndex];
-    analogRead(A0); // toss the initial reading
-    // average over previous readings
-    newValue = MOMENTUM * oldValue + FORCE * analogRead(A0);
-    if (!ignorePot[potValueIndex] && ((oldValue >> 3) != (newValue >> 3)) ) {
-      // scaled value change happened
-      byte paramIndex = potAssignMap[potValueIndex];
-      pg800.setParam(paramIndex);
-      pg800.setValue(newValue >> 3);
-      displayNeedsUpdate = true;
+    if (!ignorePot[potValueIndex]) {
+      oldValue = potValues[potValueIndex];
+      analogRead(A0); // toss the initial reading
+      // average over previous readings
+      newValue = MOMENTUM * oldValue + FORCE * analogRead(A0);
+      if ((oldValue >> 3) != (newValue >> 3)) {
+        byte paramIndex = potAssignMap[potValueIndex];
+        pg800.setParam(paramIndex);
+        pg800.setValue(newValue >> 3);
+        displayNeedsUpdate = true;
+      }
+      potValues[potValueIndex] = newValue;
     }
-    potValues[potValueIndex] = newValue;
     potValueIndex++;
     
     potValues[potValueIndex] = analogRead(A1);
@@ -192,7 +193,7 @@ void loop() {
     displayNeedsUpdate = false;
   }
 
-  if ((millis() - syncTimeout) > 10) {
+  if ((millis() - syncTimeout) > 25) {
     cli();
     pg800.sync();
     sei();
@@ -231,6 +232,10 @@ void rotateWheel(int direction) {
 }
 
 void updateDisplay() {
+
+  detachInterrupt(0);
+  detachInterrupt(1);
+  
   display.clearDisplay();
   display.setTextColor(WHITE);
 
@@ -261,6 +266,9 @@ void updateDisplay() {
   display.drawRect(0,13,128,19,WHITE);
 
   display.display();
+
+  attachInterrupt(0, interruptA, RISING); // set an interrupt on PinA, looking for a rising edge signal and executing the "PinA" Interrupt Service Routine (below)
+  attachInterrupt(1, interruptB, RISING); // set an interrupt on PinB, looking for a rising edge signal and executing the "PinB" Interrupt Service Routine (below)
 }
 
 
