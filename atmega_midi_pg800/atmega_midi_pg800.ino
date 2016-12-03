@@ -26,8 +26,6 @@ volatile unsigned long potAssignHoldStartTime;
 
 int potValues[48];
 int oldValue, newValue;
-#define MOMENTUM .9
-#define FORCE .1
 
 
 // mapping pots to PG800 params
@@ -157,7 +155,7 @@ void loop() {
       oldValue = potValues[potValueIndex];
       analogRead(A0); // toss the initial reading
       // average over previous readings
-      newValue = MOMENTUM * oldValue + FORCE * analogRead(A0);
+      newValue = (3 * oldValue + analogRead(A0)) >> 2;
       if ((oldValue >> 3) != (newValue >> 3)) {
         byte paramIndex = potAssignMap[potValueIndex];
         pg800.setParam(paramIndex);
@@ -189,11 +187,17 @@ void loop() {
   }
 
   if (displayNeedsUpdate) {
+
+    detachInterrupt(0);
+    detachInterrupt(1);
     updateDisplay();
+    attachInterrupt(0, interruptA, RISING);
+    attachInterrupt(1, interruptB, RISING);
+    
     displayNeedsUpdate = false;
   }
 
-  if ((millis() - syncTimeout) > 25) {
+  if ((millis() - syncTimeout) > 5) {
     cli();
     pg800.sync();
     sei();
@@ -232,9 +236,6 @@ void rotateWheel(int direction) {
 }
 
 void updateDisplay() {
-
-  detachInterrupt(0);
-  detachInterrupt(1);
   
   display.clearDisplay();
   display.setTextColor(WHITE);
@@ -266,9 +267,6 @@ void updateDisplay() {
   display.drawRect(0,13,128,19,WHITE);
 
   display.display();
-
-  attachInterrupt(0, interruptA, RISING); // set an interrupt on PinA, looking for a rising edge signal and executing the "PinA" Interrupt Service Routine (below)
-  attachInterrupt(1, interruptB, RISING); // set an interrupt on PinB, looking for a rising edge signal and executing the "PinB" Interrupt Service Routine (below)
 }
 
 
