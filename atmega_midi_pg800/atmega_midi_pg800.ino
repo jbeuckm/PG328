@@ -181,6 +181,7 @@ void loop() {
     int greatestPotValueIndex = findGreatestValuePot();
     potAssignMap[greatestPotValueIndex] = pg800.getParamIndex();
     potAssigned = greatestPotValueIndex;
+    ignorePot[greatestPotValueIndex] = false;
     displayNeedsUpdate = true;
     potAssignHoldStartTime = millis();
   }
@@ -206,13 +207,13 @@ void buttonUp() {
 void rotateWheel(int direction) {
   if (changeParamMode) {
     potAssignHoldStartTime = millis();
-    if (direction == 1) {
+    if (direction == -1) {
       pg800.nextParam();
     } else {
       pg800.prevParam();
     }
   } else {
-    if (direction == 1) {
+    if (direction == -1) {
       pg800.incValue();
     } else {
       pg800.decValue();
