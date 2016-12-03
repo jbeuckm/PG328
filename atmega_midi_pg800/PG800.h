@@ -15,7 +15,7 @@ class PG800 {
   byte CLOCK_IN_PIN;
   byte DATA_OUT_PIN;
 
-  byte paramIndex;
+  volatile byte paramIndex;
 
 public:
   PG800(int ready_pin, int clock_in_pin, int data_out_pin);

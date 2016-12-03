@@ -58,7 +58,7 @@ const char* const string_table[] PROGMEM = {
   s40, s41, s42, s43, s44, s45, s46, s47
 };
 
-byte param_values[48] = {
+volatile byte param_values[48] = {
   63,63,63,63,63,63,63,63,
   63,63,63,63,63,63,63,63,
   63,63,63,63,63,63,63,63,
@@ -112,14 +112,14 @@ void PG800::incValue() {
   param_values[paramIndex]++;
 
   sendByte(CONTROL_BYTE_OFFSET + paramIndex);
-  sendByte(param_values[paramIndex] % 128);
+  sendByte(param_values[paramIndex]);
 }
 void PG800::decValue() {
   if (param_values[paramIndex] == 0) return;
   param_values[paramIndex]--;
 
   sendByte(CONTROL_BYTE_OFFSET + paramIndex);
-  sendByte(param_values[paramIndex] % 128);
+  sendByte(param_values[paramIndex]);
 }
 void PG800::setValue(byte value) {
   if (value < 0) return;
@@ -127,7 +127,7 @@ void PG800::setValue(byte value) {
   param_values[paramIndex] = value;
 
   sendByte(CONTROL_BYTE_OFFSET + paramIndex);
-  sendByte(param_values[paramIndex] % 128);
+  sendByte(param_values[paramIndex]);
 }
 
 

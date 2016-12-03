@@ -10,7 +10,7 @@
 
 #define OLED_RESET 4
 Adafruit_SSD1306 display(OLED_RESET);
-bool displayNeedsUpdate = true;
+volatile bool displayNeedsUpdate = true;
 
 RotaryEncoder wheel(4);
 boolean changeParamMode = false;
@@ -22,7 +22,7 @@ byte potValueIndex;
 boolean ignorePot[48];
 
 int potAssigned = -1;
-unsigned long potAssignHoldStartTime;
+volatile unsigned long potAssignHoldStartTime;
 
 int potValues[48];
 int oldValue, newValue;
@@ -65,6 +65,9 @@ void setup() {
     ignorePot[i] = true;
   }
   
+  DDRB = B1111; // mux address lines as outputs
+  initPotValues();
+  
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3C (for the 128x32)
 
   attachInterrupt(0, interruptA, RISING); // set an interrupt on PinA, looking for a rising edge signal and executing the "PinA" Interrupt Service Routine (below)
@@ -73,9 +76,6 @@ void setup() {
   wheel.setHandleButtonUp(buttonUp);
   wheel.setHandleRotate(rotateWheel);
 
-  DDRB = B1111; // mux address lines as outputs
-  initPotValues();
-  
   MIDI.setHandleSystemExclusive(handleSystemExclusive);
   
   MIDI.begin();
@@ -196,6 +196,7 @@ void loop() {
     cli();
     pg800.sync();
     sei();
+    syncTimeout = millis();
   }
 }
 
