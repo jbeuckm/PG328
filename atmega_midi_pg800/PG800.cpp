@@ -127,7 +127,7 @@ void PG800::setValue(byte value) {
 
 
 
-PG800::PG800(int ready_pin, int clock_in_pin, int data_out_pin) : paramChanged(48) {
+PG800::PG800(int ready_pin, int clock_in_pin, int data_out_pin) : paramChanged(48), outBuffer(10) {
   READY_PIN = ready_pin;
   CLOCK_IN_PIN = clock_in_pin;
   DATA_OUT_PIN = data_out_pin;
@@ -172,9 +172,12 @@ void PG800::sendByte(byte data) {
 void PG800::sync() {
   int updatedParamIndex = paramChanged.addressOfFirstSet();
 
-  if ((updatedParamIndex >= 0) && (updatedParamIndex < 48)) {
-    sendByte(PG800_PARAM_OFFSET + updatedParamIndex);
-    sendByte(param_values[updatedParamIndex]);
+  if (outBuffer.getLength() > 0) {
+    sendByte(outBuffer.shift());
+  }
+  else if ((updatedParamIndex >= 0) && (updatedParamIndex < 48)) {
+    outBuffer.push(PG800_PARAM_OFFSET + updatedParamIndex);
+    outBuffer.push(param_values[updatedParamIndex]);
     paramChanged.setBit(updatedParamIndex, false);
   }
 }

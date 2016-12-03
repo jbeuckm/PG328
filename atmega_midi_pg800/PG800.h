@@ -1,5 +1,6 @@
 #include "Arduino.h"
 #include "CompactBoolArray.h"
+#include "CircularByteBuffer.h"
 
 #define PG800_SYSEX_OFFSET 0x0b
 #define PG800_PARAM_OFFSET 0x80
@@ -7,6 +8,7 @@
 class PG800 {
 
   CompactBoolArray paramChanged;
+  CircularByteBuffer outBuffer;
 
   byte sendQueue[10];
   byte sendQueueLength = 0;
