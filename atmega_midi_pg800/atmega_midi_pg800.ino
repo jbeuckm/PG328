@@ -4,13 +4,13 @@
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
-//#include <gfxfont.h>
 
 #include "RotaryEncoder.h"
 #include "PG800.h"
 
 #define OLED_RESET 4
 Adafruit_SSD1306 display(OLED_RESET);
+bool displayNeedsUpdate = true;
 
 RotaryEncoder wheel(4);
 
@@ -25,8 +25,10 @@ int oldValue, newValue;
 #define MOMENTUM .9
 #define FORCE .1
 
+int potAssigned = -1;
+
 // mapping pots to PG800 params
-byte potMap[48] = {
+byte potAssignMap[48] = {
   0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
   10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
   20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
@@ -48,6 +50,7 @@ void handleSystemExclusive(byte *message, unsigned size) {
   {  
     pg800.setParam(message[7] - SYSEX_OFFSET);
     pg800.setValue(message[8]);
+    displayNeedsUpdate = true;
   }
 }
 
@@ -84,14 +87,20 @@ void interruptB() {
 
 
 void initPotValues() {
+
+  potValueIndex = 0;
+
   for (muxAddress=0; muxAddress<16; muxAddress++) {
     PORTB = muxAddress;
     analogRead(A0);
-    potValues[muxAddress] = analogRead(A0);
+    potValues[potValueIndex] = analogRead(A0);
+    potValueIndex++;
     analogRead(A1);
-    potValues[16 + muxAddress] = analogRead(A1);
+    potValues[potValueIndex] = analogRead(A1);
+    potValueIndex++;
     analogRead(A2);
-    potValues[32 + muxAddress] = analogRead(A2);
+    potValues[potValueIndex] = analogRead(A2);
+    potValueIndex++;
   }
 }
 
@@ -109,9 +118,10 @@ void loop() {
     newValue = MOMENTUM * oldValue + FORCE * analogRead(A0);
     if (!ignorePot[potValueIndex] && ((oldValue >> 3) != (newValue >> 3)) ) {
       // scaled value change happened
-      byte paramIndex = potMap[potValueIndex];
+      byte paramIndex = potAssignMap[potValueIndex];
       pg800.setParam(paramIndex);
       pg800.setValue(newValue >> 3);
+      displayNeedsUpdate = true;
     }
     potValues[potValueIndex] = newValue;
     potValueIndex++;
@@ -126,21 +136,27 @@ void loop() {
   MIDI.read();
   
   wheel.checkButton();
-  updateDisplay();
+
+  if (displayNeedsUpdate) {
+    updateDisplay();
+    displayNeedsUpdate = false;
+  }
 }
 
 
-boolean changeParam = false;
+boolean changeParamMode = false;
 void buttonDown() {
-  changeParam = true;
+  changeParamMode = true;
+  displayNeedsUpdate = true;
 }
 void buttonUp() {
-  changeParam = false;
+  changeParamMode = false;
+  displayNeedsUpdate = true;
 }
 
 
 void rotateWheel(int direction) {
-  if (changeParam) {
+  if (changeParamMode) {
     if (direction == 1) {
       pg800.nextParam();
     } else {
@@ -153,6 +169,7 @@ void rotateWheel(int direction) {
       pg800.decValue();
     }
   }
+  displayNeedsUpdate = true;
 }
 
 void updateDisplay() {
@@ -164,7 +181,7 @@ void updateDisplay() {
   display.setTextSize(1);
   display.print(pg800.paramName());
 
-  if (changeParam)
+  if (changeParamMode)
   display.drawRect(0,0,128,13,WHITE);
     
 
@@ -172,7 +189,7 @@ void updateDisplay() {
   display.setTextSize(2);
   display.print(String(pg800.paramValue()));
 
-  if (!changeParam)
+  if (!changeParamMode)
   display.drawRect(0,13,128,19,WHITE);
 
   display.display();
