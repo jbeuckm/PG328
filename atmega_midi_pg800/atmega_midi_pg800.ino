@@ -145,6 +145,8 @@ int findGreatestValuePot() {
   return greatestPotValueIndex;
 }
 
+unsigned long syncTimeout = 0;
+
 void loop() {
 
   potValueIndex = 0;
@@ -189,6 +191,12 @@ void loop() {
   if (displayNeedsUpdate) {
     updateDisplay();
     displayNeedsUpdate = false;
+  }
+
+  if ((millis() - syncTimeout) > 10) {
+    cli();
+    pg800.sync();
+    sei();
   }
 }
 

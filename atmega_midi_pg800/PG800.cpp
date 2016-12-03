@@ -170,3 +170,8 @@ void PG800::sendByte(byte data) {
   delayMicroseconds(5);
 }
 
+
+void PG800::sync() {
+  
+}
+

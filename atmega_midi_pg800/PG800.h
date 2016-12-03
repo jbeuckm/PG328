@@ -27,5 +27,7 @@ public:
   void incValue();
   void decValue();
   void setValue(byte value);
+
+  void sync();
 };
 
