@@ -5,39 +5,39 @@ const char s0[] PROGMEM = "DCO1 Range";
 const char s1[] PROGMEM = "DCO1 Wave";
 const char s2[] PROGMEM = "DCO1 Tune";
 const char s3[] PROGMEM = "DCO1 LFO";
-const char s4[] PROGMEM = "DCO1 Env";
+const char s4[] PROGMEM = "DCO1 EG";
 const char s5[] PROGMEM = "DCO2 Range";
 const char s6[] PROGMEM = "DCO2 Wave";
 const char s7[] PROGMEM = "XMOD";
 const char s8[] PROGMEM = "DCO2 Tune";
 const char s9[] PROGMEM = "DCO2 Fine Tune";
 const char s10[] PROGMEM = "DCO2 LFO";
-const char s11[] PROGMEM = "DCO2 Env";
+const char s11[] PROGMEM = "DCO2 EG";
 const char s12[] PROGMEM = "";
 const char s13[] PROGMEM = "";
 const char s14[] PROGMEM = "";
 const char s15[] PROGMEM = "DCO Dynamics";
-const char s16[] PROGMEM = "DCO Env Mode";
+const char s16[] PROGMEM = "DCO EG Mode";
 const char s17[] PROGMEM = "DCO1 Level";
 const char s18[] PROGMEM = "DCO2 Level";
-const char s19[] PROGMEM = "Mix Env";
+const char s19[] PROGMEM = "Mix EG";
 const char s20[] PROGMEM = "Mix Dynamics";
-const char s21[] PROGMEM = "Mix Env Mode";
+const char s21[] PROGMEM = "Mix EG Mode";
 const char s22[] PROGMEM = "VCF HPF";
 const char s23[] PROGMEM = "VCF Freq";
 const char s24[] PROGMEM = "VCF Resonance";
 const char s25[] PROGMEM = "VCF LFO";
-const char s26[] PROGMEM = "VCF Env";
+const char s26[] PROGMEM = "VCF EG";
 const char s27[] PROGMEM = "VCF Key";
 const char s28[] PROGMEM = "VCF Dynamics";
-const char s29[] PROGMEM = "VCF Env Mode";
+const char s29[] PROGMEM = "VCF EG Mode";
 const char s30[] PROGMEM = "VCA Level";
 const char s31[] PROGMEM = "VCA Dynamics";
 const char s32[] PROGMEM = "Chorus";
 const char s33[] PROGMEM = "LFO Wave";
 const char s34[] PROGMEM = "LFO Delay";
 const char s35[] PROGMEM = "LFO Rate";
-const char s36[] PROGMEM = "Env1 Attack";
+const char s36[] PROGMEM = "EG1 Attack";
 const char s37[] PROGMEM = "EG1 Decay";
 const char s38[] PROGMEM = "EG1 Sustain";
 const char s39[] PROGMEM = "EG1 Release";
@@ -48,7 +48,7 @@ const char s43[] PROGMEM = "EG2 Sustain";
 const char s44[] PROGMEM = "EG2 Release";
 const char s45[] PROGMEM = "EG2 Key";
 const char s46[] PROGMEM = "";
-const char s47[] PROGMEM = "VCA Env Mode";
+const char s47[] PROGMEM = "VCA EG Mode";
 
 const char* const string_table[] PROGMEM = {
   s0, s1, s2, s3, s4, s5, s6, s7, s8, s9,
@@ -76,6 +76,10 @@ int PG800::getParamIndex() {
   return paramIndex;
 }
 
+
+void PG800::queueByte(byte newByte) {
+  sendQueue[sendQueueLength++] = newByte;
+}
 
 char *PG800::paramName() {
   strcpy_P(buffer, (char*)pgm_read_word(&(string_table[paramIndex])));
@@ -128,7 +132,7 @@ void PG800::setValue(byte value) {
 
 
 
-PG800::PG800(int ready_pin, int clock_in_pin, int data_out_pin) {
+PG800::PG800(int ready_pin, int clock_in_pin, int data_out_pin) : paramChanged(48) {
   READY_PIN = ready_pin;
   CLOCK_IN_PIN = clock_in_pin;
   DATA_OUT_PIN = data_out_pin;
@@ -172,6 +176,6 @@ void PG800::sendByte(byte data) {
 
 
 void PG800::sync() {
-  
+  int updatedParamIndex = paramChanged.addressOfFirstSet();
 }
 

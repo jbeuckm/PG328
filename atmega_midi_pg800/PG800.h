@@ -1,9 +1,15 @@
 #include "Arduino.h"
+#include "CompactBoolArray.h"
 
 #define PG800_SYSEX_OFFSET 0x0b
 #define PG800_PARAM_OFFSET 0x80
 
 class PG800 {
+
+  CompactBoolArray paramChanged;
+
+  byte sendQueue[10];
+  byte sendQueueLength = 0;
 
   byte READY_PIN;
   byte CLOCK_IN_PIN;
@@ -28,6 +34,7 @@ public:
   void decValue();
   void setValue(byte value);
 
+  void queueByte(byte newByte);
   void sync();
 };
 

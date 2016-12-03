@@ -16,7 +16,6 @@ RotaryEncoder wheel(4);
 boolean changeParamMode = false;
 
 PG800 pg800(6, 5, 7);
-#define SYSEX_OFFSET 0x0B
 
 byte muxAddress;
 byte potValueIndex;
@@ -52,7 +51,7 @@ void handleSystemExclusive(byte *message, unsigned size) {
   if (message[5] == 0x20) // ???
   if (message[6] == 0x01) // Tone
   {  
-    pg800.setParam(message[7] - SYSEX_OFFSET);
+    pg800.setParam(message[7] - PG800_SYSEX_OFFSET);
     pg800.setValue(message[8]);
     displayNeedsUpdate = true;
   }
