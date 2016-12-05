@@ -10,23 +10,18 @@
 
 #define OLED_RESET 4
 Adafruit_SSD1306 display(OLED_RESET);
-volatile bool displayNeedsUpdate = true;
+volatile boolean displayNeedsUpdate = true;
 
 RotaryEncoder wheel(4);
 boolean changeParamMode = false;
 
-PG800 pg800(6, 5, 7);
+byte potAssigned = 255;
+volatile unsigned long potAssignHoldStartTime;
 
 byte muxAddress;
 byte potValueIndex;
 boolean ignorePot[48];
-
-int potAssigned = -1;
-volatile unsigned long potAssignHoldStartTime;
-
-int potValues[48];
-int oldValue, newValue;
-
+byte potValues[48];
 
 // mapping pots to PG800 params
 byte potAssignMap[48] = {
@@ -37,6 +32,8 @@ byte potAssignMap[48] = {
   40, 41, 42, 43, 44, 45, 46, 47
 };
 
+
+PG800 pg800(6, 5, 7);
 
 MIDI_CREATE_DEFAULT_INSTANCE();
 
@@ -94,13 +91,13 @@ void initPotValues() {
   for (muxAddress=0; muxAddress<16; muxAddress++) {
     PORTB = muxAddress;
     analogRead(A0);
-    potValues[potValueIndex] = analogRead(A0);
+    potValues[potValueIndex] = analogRead(A0) >> 3;
     potValueIndex++;
     analogRead(A1);
-    potValues[potValueIndex] = analogRead(A1);
+    potValues[potValueIndex] = analogRead(A1) >> 3;
     potValueIndex++;
     analogRead(A2);
-    potValues[potValueIndex] = analogRead(A2);
+    potValues[potValueIndex] = analogRead(A2) >> 3;
     potValueIndex++;
   }
 }
@@ -108,9 +105,9 @@ void initPotValues() {
 
 int findGreatestValuePot() {
   
-  int greatestPotValue = 0;
-  int greatestPotValueIndex = 0;
-  int readingValue;
+  unsigned int greatestPotValue = 0;
+  byte greatestPotValueIndex = 0;
+  unsigned int readingValue;
   
   potValueIndex = 0;
 
@@ -143,6 +140,9 @@ int findGreatestValuePot() {
 }
 
 unsigned long syncTimeout = 0;
+byte oldValue, newValue;
+unsigned int reading;
+byte readingFraction;
 
 void loop() {
 
@@ -152,17 +152,41 @@ void loop() {
     PORTB = muxAddress;
 
     if (!ignorePot[potValueIndex]) {
-      oldValue = potValues[potValueIndex];
+
       analogRead(A0); // toss the initial reading
-      // average over previous readings
-      newValue = (3 * oldValue + analogRead(A0)) >> 2;
-      if ((oldValue >> 3) != (newValue >> 3)) {
-        byte paramIndex = potAssignMap[potValueIndex];
-        pg800.setParam(paramIndex);
-        pg800.setValue(newValue >> 3);
-        displayNeedsUpdate = true;
+      
+      reading = analogRead(A0);
+      readingFraction = reading & B111;
+      
+      // round down
+      if (readingFraction < 3) {
+        newValue = reading >> 3;
+
+        if (potValues[potValueIndex] != newValue) {
+          byte paramIndex = potAssignMap[potValueIndex];
+          pg800.setParam(paramIndex);
+          pg800.setValue(newValue);
+          potValues[potValueIndex] = newValue;
+          displayNeedsUpdate = true;
+        }
       }
-      potValues[potValueIndex] = newValue;
+      // dead zone - keep existing value
+      else if (readingFraction < 6) {
+      }
+      // round up
+      else {
+        newValue = reading >> 3;
+        newValue++;
+
+        if (potValues[potValueIndex] != newValue) {
+          byte paramIndex = potAssignMap[potValueIndex];
+          pg800.setParam(paramIndex);
+          pg800.setValue(newValue);
+          potValues[potValueIndex] = newValue;
+          displayNeedsUpdate = true;
+        }
+      }
+          
     }
     potValueIndex++;
     
@@ -240,14 +264,14 @@ void updateDisplay() {
   display.clearDisplay();
   display.setTextColor(WHITE);
 
-  if (potAssigned != -1) {
+  if (potAssigned != 255) {
     display.setCursor(3,3);
     display.setTextSize(1);
     display.print(potAssigned);
     display.print(" --> ");
     display.print(pg800.paramName());
     display.display();
-    potAssigned = -1;
+    potAssigned = 255;
     return;
   }
 
