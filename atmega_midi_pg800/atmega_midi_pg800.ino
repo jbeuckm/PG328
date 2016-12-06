@@ -12,11 +12,43 @@
 Adafruit_SSD1306 display(OLED_RESET);
 volatile boolean displayNeedsUpdate = true;
 
+PG800 pg800(6, 5, 7);
+
 RotaryEncoder wheel(4);
 boolean changeParamMode = false;
+volatile unsigned long potAssignHoldStartTime;
+
+void buttonDown() {
+  changeParamMode = true;
+  displayNeedsUpdate = true;
+  potAssignHoldStartTime = millis();
+}
+void buttonUp() {
+  changeParamMode = false;
+  displayNeedsUpdate = true;
+}
+
+void rotateWheel(int direction) {
+  if (changeParamMode) {
+    potAssignHoldStartTime = millis();
+    if (direction == -1) {
+      pg800.nextParam();
+    } else {
+      pg800.prevParam();
+    }
+  } else {
+    if (direction == -1) {
+      pg800.incValue();
+    } else {
+      pg800.decValue();
+    }
+  }
+  displayNeedsUpdate = true;
+}
+
+
 
 byte potAssigned = 255;
-volatile unsigned long potAssignHoldStartTime;
 
 byte muxAddress;
 byte potValueIndex;
@@ -33,8 +65,6 @@ byte potAssignMap[48] = {
   40, 41, 42, 43, 44, 45, 46, 47
 };
 
-
-PG800 pg800(6, 5, 7);
 
 MIDI_CREATE_DEFAULT_INSTANCE();
 
@@ -145,8 +175,10 @@ int findGreatestValuePot() {
 
 unsigned long syncTimeout = 0;
 byte oldValue, newValue;
+unsigned int analogIn;
 unsigned int reading;
 byte readingFraction;
+byte readingWholePart;
 
 #define UPDATE_IF_ENABLED() if (!ignorePot[potValueIndex]) {\
     if (potValues[potValueIndex] != newValue) {\
@@ -160,16 +192,25 @@ byte readingFraction;
 
 
 #define PROCESS_INPUT(analogInput) {\
-  reading = (potReadings[potValueIndex] + (potValues[potValueIndex] << 3) + (analogRead(analogInput) << 1)) >> 2;\
-  potReadings[potValueIndex] = reading;\
+  analogIn = analogRead(analogInput);\
+  reading = ( (potValues[potValueIndex] << 4) + potReadings[potValueIndex] + analogIn ) >> 2;\
+  potReadings[potValueIndex] = analogIn;\
   readingFraction = reading & B111;\
+  readingWholePart = reading >> 3;\
   if (readingFraction < 3) {\
-    newValue = reading >> 3;\
+    newValue = readingWholePart;\
     UPDATE_IF_ENABLED()\
   }\
-  else if (readingFraction > 5) {\
-    newValue = reading >> 3;\
-    newValue++;\
+  else if (readingFraction < 6) {\
+    if (potValues[potValueIndex] != readingWholePart) {\
+      if (potValues[potValueIndex] != (readingWholePart + 1)) {\
+        newValue = readingWholePart;\
+        UPDATE_IF_ENABLED()\
+      }\
+    }\
+  }\
+  else {\
+    newValue = readingWholePart + 1;\
     UPDATE_IF_ENABLED()\
   }\
 }
@@ -226,35 +267,6 @@ void loop() {
   }
 }
 
-
-void buttonDown() {
-  changeParamMode = true;
-  displayNeedsUpdate = true;
-  potAssignHoldStartTime = millis();
-}
-void buttonUp() {
-  changeParamMode = false;
-  displayNeedsUpdate = true;
-}
-
-
-void rotateWheel(int direction) {
-  if (changeParamMode) {
-    potAssignHoldStartTime = millis();
-    if (direction == -1) {
-      pg800.nextParam();
-    } else {
-      pg800.prevParam();
-    }
-  } else {
-    if (direction == -1) {
-      pg800.incValue();
-    } else {
-      pg800.decValue();
-    }
-  }
-  displayNeedsUpdate = true;
-}
 
 void updateDisplay() {
   
