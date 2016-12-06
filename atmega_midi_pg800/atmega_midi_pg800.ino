@@ -21,6 +21,7 @@ volatile unsigned long potAssignHoldStartTime;
 byte muxAddress;
 byte potValueIndex;
 boolean ignorePot[48];
+unsigned int potReadings[48];
 byte potValues[48];
 
 // mapping pots to PG800 params
@@ -90,13 +91,16 @@ void initPotValues() {
 
   for (muxAddress=0; muxAddress<16; muxAddress++) {
     PORTB = muxAddress;
-    analogRead(A0);
+
+    potReadings[potValueIndex] = analogRead(A0);
     potValues[potValueIndex] = analogRead(A0) >> 3;
     potValueIndex++;
-    analogRead(A1);
+
+    potReadings[potValueIndex] = analogRead(A1);
     potValues[potValueIndex] = analogRead(A1) >> 3;
     potValueIndex++;
-    analogRead(A2);
+
+    potReadings[potValueIndex] = analogRead(A2);
     potValues[potValueIndex] = analogRead(A2) >> 3;
     potValueIndex++;
   }
@@ -153,11 +157,11 @@ void loop() {
 
     if (!ignorePot[potValueIndex]) {
 
-      analogRead(A0); // toss the initial reading
+      reading = (7 * potReadings[potValueIndex] + analogRead(A0)) >> 3;
+      potReadings[potValueIndex] = reading;
       
-      reading = analogRead(A0);
       readingFraction = reading & B111;
-      
+
       // round down
       if (readingFraction < 3) {
         newValue = reading >> 3;

@@ -173,7 +173,9 @@ void PG800::sync() {
   int updatedParamIndex = paramChanged.addressOfFirstSet();
 
   if (outBuffer.getLength() > 0) {
-    sendByte(outBuffer.shift());
+    while (outBuffer.getLength() > 0) {
+      sendByte(outBuffer.shift());
+    }
   }
   else if ((updatedParamIndex >= 0) && (updatedParamIndex < 48)) {
     outBuffer.push(PG800_PARAM_OFFSET + updatedParamIndex);
