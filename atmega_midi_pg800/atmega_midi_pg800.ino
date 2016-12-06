@@ -148,6 +148,35 @@ byte oldValue, newValue;
 unsigned int reading;
 byte readingFraction;
 
+#define UPDATE_IF_ENABLED() if (!ignorePot[potValueIndex]) {\
+    if (potValues[potValueIndex] != newValue) {\
+      byte paramIndex = potAssignMap[potValueIndex];\
+      pg800.setParam(paramIndex);\
+      pg800.setValue(newValue);\
+      potValues[potValueIndex] = newValue;\
+      displayNeedsUpdate = true;\
+    }\
+}
+
+
+#define PROCESS_INPUT(analogInput) {\
+  reading = (potReadings[potValueIndex] + (potValues[potValueIndex] << 3) + (analogRead(analogInput) << 1)) >> 2;\
+  potReadings[potValueIndex] = reading;\
+  readingFraction = reading & B111;\
+  if (readingFraction < 3) {\
+    newValue = reading >> 3;\
+    UPDATE_IF_ENABLED()\
+  }\
+  else if (readingFraction > 5) {\
+    newValue = reading >> 3;\
+    newValue++;\
+    UPDATE_IF_ENABLED()\
+  }\
+}
+
+
+
+
 void loop() {
 
   potValueIndex = 0;
@@ -155,49 +184,13 @@ void loop() {
   for (muxAddress=0; muxAddress<16; muxAddress++) {
     PORTB = muxAddress;
 
-    if (!ignorePot[potValueIndex]) {
-
-      reading = (7 * potReadings[potValueIndex] + analogRead(A0)) >> 3;
-      potReadings[potValueIndex] = reading;
-      
-      readingFraction = reading & B111;
-
-      // round down
-      if (readingFraction < 3) {
-        newValue = reading >> 3;
-
-        if (potValues[potValueIndex] != newValue) {
-          byte paramIndex = potAssignMap[potValueIndex];
-          pg800.setParam(paramIndex);
-          pg800.setValue(newValue);
-          potValues[potValueIndex] = newValue;
-          displayNeedsUpdate = true;
-        }
-      }
-      // dead zone - keep existing value
-      else if (readingFraction < 6) {
-      }
-      // round up
-      else {
-        newValue = reading >> 3;
-        newValue++;
-
-        if (potValues[potValueIndex] != newValue) {
-          byte paramIndex = potAssignMap[potValueIndex];
-          pg800.setParam(paramIndex);
-          pg800.setValue(newValue);
-          potValues[potValueIndex] = newValue;
-          displayNeedsUpdate = true;
-        }
-      }
-          
-    }
+    PROCESS_INPUT(A0)      
     potValueIndex++;
     
-    potValues[potValueIndex] = analogRead(A1);
+    PROCESS_INPUT(A1)      
     potValueIndex++;
     
-    potValues[potValueIndex] = analogRead(A2);
+    PROCESS_INPUT(A2)      
     potValueIndex++;
   }
   
