@@ -15,7 +15,7 @@ volatile boolean displayNeedsUpdate = true;
 PG800 pg800(6, 5, 7);
 
 RotaryEncoder wheel(4);
-boolean changeParamMode = false;
+volatile boolean changeParamMode = false;
 volatile unsigned long potAssignHoldStartTime;
 
 void buttonDown() {
@@ -46,13 +46,12 @@ void rotateWheel(int direction) {
   displayNeedsUpdate = true;
 }
 
-
-
-byte potAssigned = 255;
+#define NO_ASSIGNMENT 255
+byte potAssigned = NO_ASSIGNMENT;
 
 byte muxAddress;
 byte potValueIndex;
-boolean ignorePot[48];
+boolean potEnabled[48];
 unsigned int potReadings[48];
 byte potValues[48];
 
@@ -88,7 +87,7 @@ void handleSystemExclusive(byte *message, unsigned size) {
 void setup() {
 
   for (int i=0; i<48; i++) {
-    ignorePot[i] = true;
+    potEnabled[i] = false;
   }
   
   DDRB = B1111; // mux address lines as outputs
@@ -180,7 +179,7 @@ unsigned int reading;
 byte readingFraction;
 byte readingWholePart;
 
-#define UPDATE_IF_ENABLED() if (!ignorePot[potValueIndex]) {\
+#define UPDATE_IF_ENABLED() if (potEnabled[potValueIndex]) {\
     if (potValues[potValueIndex] != newValue) {\
       byte paramIndex = potAssignMap[potValueIndex];\
       pg800.setParam(paramIndex);\
@@ -193,28 +192,33 @@ byte readingWholePart;
 
 #define PROCESS_INPUT(analogInput) {\
   analogIn = analogRead(analogInput);\
-  reading = ( (potValues[potValueIndex] << 4) + potReadings[potValueIndex] + analogIn ) >> 2;\
-  potReadings[potValueIndex] = analogIn;\
-  readingFraction = reading & B111;\
-  readingWholePart = reading >> 3;\
-  if (readingFraction < 3) {\
-    newValue = readingWholePart;\
-    UPDATE_IF_ENABLED()\
-  }\
-  else if (readingFraction < 6) {\
-    if (potValues[potValueIndex] != readingWholePart) {\
-      if (potValues[potValueIndex] != (readingWholePart + 1)) {\
-        newValue = readingWholePart;\
-        UPDATE_IF_ENABLED()\
+  if (analogIn < 4) {\
+    potReadings[potValueIndex] = 0;\
+    newValue = 0;\
+    UPDATE_IF_ENABLED()\    
+  } else {\
+    reading = ( (potValues[potValueIndex] << 4) + potReadings[potValueIndex] + analogIn ) >> 2;\
+    potReadings[potValueIndex] = analogIn;\
+    readingFraction = reading & B111;\
+    readingWholePart = reading >> 3;\
+    if (readingFraction < 3) {\
+      newValue = readingWholePart;\
+      UPDATE_IF_ENABLED()\
+    }\
+    else if (readingFraction < 6) {\
+      if (potValues[potValueIndex] != readingWholePart) {\
+        if (potValues[potValueIndex] != (readingWholePart + 1)) {\
+          newValue = readingWholePart;\
+          UPDATE_IF_ENABLED()\
+        }\
       }\
     }\
-  }\
-  else {\
-    newValue = readingWholePart + 1;\
-    UPDATE_IF_ENABLED()\
+    else {\
+      newValue = readingWholePart + 1;\
+      UPDATE_IF_ENABLED()\
+    }\
   }\
 }
-
 
 
 
@@ -225,13 +229,13 @@ void loop() {
   for (muxAddress=0; muxAddress<16; muxAddress++) {
     PORTB = muxAddress;
 
-    PROCESS_INPUT(A0)      
+    PROCESS_INPUT(A0)
     potValueIndex++;
     
-    PROCESS_INPUT(A1)      
+    PROCESS_INPUT(A1)
     potValueIndex++;
     
-    PROCESS_INPUT(A2)      
+    PROCESS_INPUT(A2)
     potValueIndex++;
   }
   
@@ -243,7 +247,7 @@ void loop() {
     int greatestPotValueIndex = findGreatestValuePot();
     potAssignMap[greatestPotValueIndex] = pg800.getParamIndex();
     potAssigned = greatestPotValueIndex;
-    ignorePot[greatestPotValueIndex] = false;
+    potEnabled[greatestPotValueIndex] = true;
     displayNeedsUpdate = true;
     potAssignHoldStartTime = millis();
   }
@@ -273,14 +277,14 @@ void updateDisplay() {
   display.clearDisplay();
   display.setTextColor(WHITE);
 
-  if (potAssigned != 255) {
+  if (potAssigned != NO_ASSIGNMENT) {
     display.setCursor(3,3);
     display.setTextSize(1);
     display.print(potAssigned);
     display.print(" --> ");
     display.print(pg800.paramName());
     display.display();
-    potAssigned = 255;
+    potAssigned = NO_ASSIGNMENT;
     return;
   }
 
