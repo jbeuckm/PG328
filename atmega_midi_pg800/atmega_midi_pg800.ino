@@ -1,3 +1,4 @@
+#include <EEPROM.h>
 #include <MIDI.h>
 
 #include <SPI.h>
@@ -50,7 +51,7 @@ void rotateWheel(int direction) {
 byte potAssigned = NO_ASSIGNMENT;
 
 byte muxAddress;
-byte potValueIndex;
+byte potIndex;
 boolean potEnabled[48];
 unsigned int potReadings[48];
 byte potValues[48];
@@ -87,7 +88,11 @@ void handleSystemExclusive(byte *message, unsigned size) {
 void setup() {
 
   for (int i=0; i<48; i++) {
-    potEnabled[i] = false;
+    byte fromROM = EEPROM.read(i);
+    if (fromROM != NO_ASSIGNMENT) {
+      potAssignMap[i] = fromROM;
+      potEnabled[i] = true;
+    }
   }
   
   DDRB = B1111; // mux address lines as outputs
@@ -116,22 +121,22 @@ void interruptB() {
 
 void initPotValues() {
 
-  potValueIndex = 0;
+  potIndex = 0;
 
   for (muxAddress=0; muxAddress<16; muxAddress++) {
     PORTB = muxAddress;
 
-    potReadings[potValueIndex] = analogRead(A0);
-    potValues[potValueIndex] = analogRead(A0) >> 3;
-    potValueIndex++;
+    potReadings[potIndex] = analogRead(A0);
+    potValues[potIndex] = analogRead(A0) >> 3;
+    potIndex++;
 
-    potReadings[potValueIndex] = analogRead(A1);
-    potValues[potValueIndex] = analogRead(A1) >> 3;
-    potValueIndex++;
+    potReadings[potIndex] = analogRead(A1);
+    potValues[potIndex] = analogRead(A1) >> 3;
+    potIndex++;
 
-    potReadings[potValueIndex] = analogRead(A2);
-    potValues[potValueIndex] = analogRead(A2) >> 3;
-    potValueIndex++;
+    potReadings[potIndex] = analogRead(A2);
+    potValues[potIndex] = analogRead(A2) >> 3;
+    potIndex++;
   }
 }
 
@@ -139,10 +144,10 @@ void initPotValues() {
 int findGreatestValuePot() {
   
   unsigned int greatestPotValue = 0;
-  byte greatestPotValueIndex = 0;
+  byte greatestpotIndex = 0;
   unsigned int readingValue;
   
-  potValueIndex = 0;
+  potIndex = 0;
 
   for (muxAddress=0; muxAddress<16; muxAddress++) {
     PORTB = muxAddress;
@@ -150,26 +155,26 @@ int findGreatestValuePot() {
     readingValue = analogRead(A0);
     if (readingValue > greatestPotValue) {
       greatestPotValue = readingValue;
-      greatestPotValueIndex = potValueIndex;
+      greatestpotIndex = potIndex;
     }
-    potValueIndex++;
+    potIndex++;
 
     readingValue = analogRead(A1);
     if (readingValue > greatestPotValue) {
       greatestPotValue = readingValue;
-      greatestPotValueIndex = potValueIndex;
+      greatestpotIndex = potIndex;
     }
-    potValueIndex++;
+    potIndex++;
 
     readingValue = analogRead(A2);
     if (readingValue > greatestPotValue) {
       greatestPotValue = readingValue;
-      greatestPotValueIndex = potValueIndex;
+      greatestpotIndex = potIndex;
     }
-    potValueIndex++;
+    potIndex++;
   }
 
-  return greatestPotValueIndex;
+  return greatestpotIndex;
 }
 
 unsigned long syncTimeout = 0;
@@ -179,26 +184,26 @@ unsigned int reading;
 byte readingFraction;
 byte readingWholePart;
 
-#define UPDATE_IF_ENABLED() if (potEnabled[potValueIndex]) {\
-    if (potValues[potValueIndex] != newValue) {\
-      byte paramIndex = potAssignMap[potValueIndex];\
-      pg800.setParam(paramIndex);\
-      pg800.setValue(newValue);\
-      potValues[potValueIndex] = newValue;\
-      displayNeedsUpdate = true;\
-    }\
+#define UPDATE_IF_ENABLED() if (potEnabled[potIndex]) {\
+  if (potValues[potIndex] != newValue) {\
+    byte paramIndex = potAssignMap[potIndex];\
+    pg800.setParam(paramIndex);\
+    pg800.setValue(newValue);\
+    potValues[potIndex] = newValue;\
+    displayNeedsUpdate = true;\
+  }\
 }
 
 
 #define PROCESS_INPUT(analogInput) {\
   analogIn = analogRead(analogInput);\
   if (analogIn < 4) {\
-    potReadings[potValueIndex] = 0;\
+    potReadings[potIndex] = 0;\
     newValue = 0;\
-    UPDATE_IF_ENABLED()\    
+    UPDATE_IF_ENABLED()\
   } else {\
-    reading = ( (potValues[potValueIndex] << 4) + potReadings[potValueIndex] + analogIn ) >> 2;\
-    potReadings[potValueIndex] = analogIn;\
+    reading = ( (potValues[potIndex] << 4) + potReadings[potIndex] + analogIn ) >> 2;\
+    potReadings[potIndex] = analogIn;\
     readingFraction = reading & B111;\
     readingWholePart = reading >> 3;\
     if (readingFraction < 3) {\
@@ -206,8 +211,8 @@ byte readingWholePart;
       UPDATE_IF_ENABLED()\
     }\
     else if (readingFraction < 6) {\
-      if (potValues[potValueIndex] != readingWholePart) {\
-        if (potValues[potValueIndex] != (readingWholePart + 1)) {\
+      if (potValues[potIndex] != readingWholePart) {\
+        if (potValues[potIndex] != (readingWholePart + 1)) {\
           newValue = readingWholePart;\
           UPDATE_IF_ENABLED()\
         }\
@@ -224,19 +229,19 @@ byte readingWholePart;
 
 void loop() {
 
-  potValueIndex = 0;
+  potIndex = 0;
 
   for (muxAddress=0; muxAddress<16; muxAddress++) {
     PORTB = muxAddress;
 
     PROCESS_INPUT(A0)
-    potValueIndex++;
+    potIndex++;
     
     PROCESS_INPUT(A1)
-    potValueIndex++;
+    potIndex++;
     
     PROCESS_INPUT(A2)
-    potValueIndex++;
+    potIndex++;
   }
   
   MIDI.read();
@@ -244,10 +249,11 @@ void loop() {
   wheel.checkButton();
 
   if (changeParamMode && ((millis() - potAssignHoldStartTime) > 3000)) {
-    int greatestPotValueIndex = findGreatestValuePot();
-    potAssignMap[greatestPotValueIndex] = pg800.getParamIndex();
-    potAssigned = greatestPotValueIndex;
-    potEnabled[greatestPotValueIndex] = true;
+    int greatestpotIndex = findGreatestValuePot();
+    potAssignMap[greatestpotIndex] = pg800.getParamIndex();
+    EEPROM.write(greatestpotIndex, pg800.getParamIndex());
+    potAssigned = greatestpotIndex;
+    potEnabled[greatestpotIndex] = true;
     displayNeedsUpdate = true;
     potAssignHoldStartTime = millis();
   }
@@ -285,6 +291,7 @@ void updateDisplay() {
     display.print(pg800.paramName());
     display.display();
     potAssigned = NO_ASSIGNMENT;
+    delay(2000);
     return;
   }
 
