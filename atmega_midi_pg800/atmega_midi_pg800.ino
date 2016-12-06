@@ -81,6 +81,12 @@ void handleSystemExclusive(byte *message, unsigned size) {
     pg800.setValue(message[8]);
     displayNeedsUpdate = true;
   }
+  else if (message[6] == 0x0f) {  // clear EEPROM
+    for (int i=0; i<48; i++) {
+      EEPROM.write(i, NO_ASSIGNMENT);
+      potEnabled[i] = false;
+    }
+  }
 }
 
 
