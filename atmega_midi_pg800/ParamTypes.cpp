@@ -108,3 +108,13 @@ void draw_value_xmod(Adafruit_SSD1306 *display) {
 
 
 
+void draw_value_eg_mode(Adafruit_SSD1306 *display) {
+  display->setCursor(4,16);
+  display->setTextSize(2);
+  display->print(String(2));  
+  display->drawLine(29, 29, 43, 15, WHITE);
+  display->drawLine(43, 15, 50, 22, WHITE);
+  display->drawLine(50, 22, 88, 22, WHITE);
+  display->drawLine(88, 22, 95, 29, WHITE);
+}
+
