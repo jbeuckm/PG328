@@ -96,5 +96,22 @@ void draw_value_range(Adafruit_SSD1306 *display) {
   }
 }
 
+void draw_value_xmod(Adafruit_SSD1306 *display) {
+  display->setCursor(4,16);
+  display->setTextSize(2);
+  if (paramValues[paramIndex] < 32) {
+    display->print(String("Off"));  
+  }
+  else if (paramValues[paramIndex] < 64) {
+    display->print(String("Sync 1"));  
+  }
+  else if (paramValues[paramIndex] < 96) {
+    display->print(String("Sync 2"));  
+  }
+  else {
+    display->print(String("XMod"));  
+  }
+}
+
 
 

@@ -68,14 +68,15 @@ volatile byte paramValues[48] = {
 };
 volatile byte paramIndex;
 
-#define PARAM_TYPES_COUNT 4
+#define PARAM_TYPES_COUNT 5
 #define NUMERIC_PARAM 0
 #define FOUR_VALUE_PARAM 1
 #define WAVE_PARAM 2
 #define RANGE_PARAM 3
+#define XMOD_PARAM 4
 
 const byte paramTypes[48] PROGMEM = {
-  RANGE_PARAM, WAVE_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, RANGE_PARAM, WAVE_PARAM, FOUR_VALUE_PARAM, 
+  RANGE_PARAM, WAVE_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, RANGE_PARAM, WAVE_PARAM, XMOD_PARAM, 
   NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, 
   NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, 
   NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, 
@@ -112,6 +113,11 @@ PG800::PG800(int ready_pin, int clock_in_pin, int data_out_pin) : paramChanged(4
   decValueFunction[RANGE_PARAM] = dec_value_4val;
   setValueFunction[RANGE_PARAM] = set_value_numeric;
   drawValueFunction[RANGE_PARAM] = draw_value_range;
+
+  incValueFunction[XMOD_PARAM] = inc_value_4val;
+  decValueFunction[XMOD_PARAM] = dec_value_4val;
+  setValueFunction[XMOD_PARAM] = set_value_numeric;
+  drawValueFunction[XMOD_PARAM] = draw_value_xmod;
 
   READY_PIN = ready_pin;
   CLOCK_IN_PIN = clock_in_pin;

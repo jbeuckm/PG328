@@ -13,4 +13,6 @@ void draw_value_wave(Adafruit_SSD1306 *display);
 
 void draw_value_range(Adafruit_SSD1306 *display);
 
+void draw_value_xmod(Adafruit_SSD1306 *display);
+
 
