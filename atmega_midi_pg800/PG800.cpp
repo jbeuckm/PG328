@@ -68,10 +68,12 @@ volatile byte paramValues[48] = {
 };
 volatile byte paramIndex;
 
+#define PARAM_TYPES_COUNT 2
 #define NUMERIC_PARAM 0
+#define FOUR_VALUE_PARAM 1
 
-byte paramTypes[48] = {
-  NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, 
+const byte paramTypes[48] PROGMEM = {
+  FOUR_VALUE_PARAM, FOUR_VALUE_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, 
   NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, 
   NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, 
   NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, 
@@ -82,10 +84,10 @@ byte paramTypes[48] = {
 #include "ParamTypes.h"
 
 // these functions have a version for each type of param
-void (*incValueFunction[1])(void);
-void (*decValueFunction[1])(void);
-void (*setValueFunction[1])(unsigned char value);
-void (*drawValueFunction[1])(Adafruit_SSD1306 *display);
+void (*incValueFunction[PARAM_TYPES_COUNT])(void);
+void (*decValueFunction[PARAM_TYPES_COUNT])(void);
+void (*setValueFunction[PARAM_TYPES_COUNT])(unsigned char value);
+void (*drawValueFunction[PARAM_TYPES_COUNT])(Adafruit_SSD1306 *display);
 
 PG800::PG800(int ready_pin, int clock_in_pin, int data_out_pin) : paramChanged(48), outBuffer(10) {
   
@@ -93,6 +95,11 @@ PG800::PG800(int ready_pin, int clock_in_pin, int data_out_pin) : paramChanged(4
   decValueFunction[NUMERIC_PARAM] = dec_value_numeric;
   setValueFunction[NUMERIC_PARAM] = set_value_numeric;
   drawValueFunction[NUMERIC_PARAM] = draw_value_numeric;
+
+  incValueFunction[FOUR_VALUE_PARAM] = inc_value_4val;
+  decValueFunction[FOUR_VALUE_PARAM] = dec_value_4val;
+  setValueFunction[FOUR_VALUE_PARAM] = set_value_4val;
+  drawValueFunction[FOUR_VALUE_PARAM] = draw_value_4val;
 
   READY_PIN = ready_pin;
   CLOCK_IN_PIN = clock_in_pin;
@@ -149,19 +156,23 @@ void PG800::setParam(byte param) {
 }
 
 void PG800::incValue() {
-  incValueFunction[paramTypes[paramIndex]]();  
+  byte paramType = pgm_read_byte_near(paramTypes + paramIndex);
+  incValueFunction[paramType]();
   paramChanged.setBit(paramIndex, true);
 }
 void PG800::decValue() {
-  decValueFunction[paramTypes[paramIndex]]();
+  byte paramType = pgm_read_byte_near(paramTypes + paramIndex);
+  decValueFunction[paramType]();
   paramChanged.setBit(paramIndex, true);
 }
 void PG800::setValue(byte value) {
-  setValueFunction[paramTypes[paramIndex]](value);
+  byte paramType = pgm_read_byte_near(paramTypes + paramIndex);
+  setValueFunction[paramType](value);
   paramChanged.setBit(paramIndex, true);
 }
 void PG800::drawParamValue(Adafruit_SSD1306 *display) {
-  drawValueFunction[paramTypes[paramIndex]](display);
+  byte paramType = pgm_read_byte_near(paramTypes + paramIndex);
+  drawValueFunction[paramType](display);
 }
 
 
