@@ -43,11 +43,6 @@ void dec_value_4val() {
     paramValues[paramIndex] = 31;
   }
 }
-void set_value_4val(unsigned char value) {
-  if (value < 0) return;
-  if (value >= 128) return;
-  paramValues[paramIndex] = value;  
-}
 void draw_value_4val(Adafruit_SSD1306 *display) {
   display->setCursor(4,16);
   display->setTextSize(2);
@@ -62,6 +57,42 @@ void draw_value_4val(Adafruit_SSD1306 *display) {
   }
   else {
     display->print(String("3"));  
+  }
+}
+
+
+void draw_value_wave(Adafruit_SSD1306 *display) {
+  display->setCursor(4,16);
+  display->setTextSize(2);
+  if (paramValues[paramIndex] < 32) {
+    display->print(String("Noise"));  
+  }
+  else if (paramValues[paramIndex] < 64) {
+    display->print(String("Square"));  
+  }
+  else if (paramValues[paramIndex] < 96) {
+    display->print(String("Pulse"));  
+  }
+  else {
+    display->print(String("Sawtooth"));  
+  }
+}
+
+
+void draw_value_range(Adafruit_SSD1306 *display) {
+  display->setCursor(4,16);
+  display->setTextSize(2);
+  if (paramValues[paramIndex] < 32) {
+    display->print(String("16'"));  
+  }
+  else if (paramValues[paramIndex] < 64) {
+    display->print(String("8'"));  
+  }
+  else if (paramValues[paramIndex] < 96) {
+    display->print(String("4'"));  
+  }
+  else {
+    display->print(String("2'"));  
   }
 }
 

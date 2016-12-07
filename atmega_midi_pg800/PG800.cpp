@@ -68,12 +68,14 @@ volatile byte paramValues[48] = {
 };
 volatile byte paramIndex;
 
-#define PARAM_TYPES_COUNT 2
+#define PARAM_TYPES_COUNT 4
 #define NUMERIC_PARAM 0
 #define FOUR_VALUE_PARAM 1
+#define WAVE_PARAM 2
+#define RANGE_PARAM 3
 
 const byte paramTypes[48] PROGMEM = {
-  FOUR_VALUE_PARAM, FOUR_VALUE_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, 
+  RANGE_PARAM, WAVE_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, RANGE_PARAM, WAVE_PARAM, FOUR_VALUE_PARAM, 
   NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, 
   NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, 
   NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, 
@@ -98,8 +100,18 @@ PG800::PG800(int ready_pin, int clock_in_pin, int data_out_pin) : paramChanged(4
 
   incValueFunction[FOUR_VALUE_PARAM] = inc_value_4val;
   decValueFunction[FOUR_VALUE_PARAM] = dec_value_4val;
-  setValueFunction[FOUR_VALUE_PARAM] = set_value_4val;
+  setValueFunction[FOUR_VALUE_PARAM] = set_value_numeric;
   drawValueFunction[FOUR_VALUE_PARAM] = draw_value_4val;
+
+  incValueFunction[WAVE_PARAM] = inc_value_4val;
+  decValueFunction[WAVE_PARAM] = dec_value_4val;
+  setValueFunction[WAVE_PARAM] = set_value_numeric;
+  drawValueFunction[WAVE_PARAM] = draw_value_wave;
+
+  incValueFunction[RANGE_PARAM] = inc_value_4val;
+  decValueFunction[RANGE_PARAM] = dec_value_4val;
+  setValueFunction[RANGE_PARAM] = set_value_numeric;
+  drawValueFunction[RANGE_PARAM] = draw_value_range;
 
   READY_PIN = ready_pin;
   CLOCK_IN_PIN = clock_in_pin;
