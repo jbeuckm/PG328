@@ -10,7 +10,7 @@
 #include "PG800.h"
 
 #define OLED_RESET 4
-Adafruit_SSD1306 display(OLED_RESET);
+Adafruit_SSD1306 *display = new Adafruit_SSD1306(OLED_RESET);
 volatile boolean displayNeedsUpdate = true;
 
 PG800 pg800(6, 5, 7);
@@ -104,7 +104,7 @@ void setup() {
   DDRB = B1111; // mux address lines as outputs
   initPotValues();
   
-  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3C (for the 128x32)
+  display->begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3C (for the 128x32)
 
   attachInterrupt(0, interruptA, RISING); // set an interrupt on PinA, looking for a rising edge signal and executing the "PinA" Interrupt Service Routine (below)
   attachInterrupt(1, interruptB, RISING); // set an interrupt on PinB, looking for a rising edge signal and executing the "PinB" Interrupt Service Routine (below)
@@ -286,37 +286,34 @@ void loop() {
 
 void updateDisplay() {
   
-  display.clearDisplay();
-  display.setTextColor(WHITE);
+  display->clearDisplay();
+  display->setTextColor(WHITE);
 
   if (potAssigned != NO_ASSIGNMENT) {
-    display.setCursor(3,3);
-    display.setTextSize(1);
-    display.print(potAssigned);
-    display.print(" --> ");
-    display.print(pg800.paramName());
-    display.display();
+    display->setCursor(3,3);
+    display->setTextSize(1);
+    display->print(potAssigned);
+    display->print(" --> ");
+    display->print(pg800.paramName());
+    display->display();
     potAssigned = NO_ASSIGNMENT;
     delay(2000);
     return;
   }
 
-  display.setCursor(3,3);
-  display.setTextSize(1);
-  display.print(pg800.paramName());
+  display->setCursor(3,3);
+  display->setTextSize(1);
+  display->print(pg800.paramName());
 
-  if (changeParamMode)
-  display.drawRect(0,0,128,13,WHITE);
-    
+  if (changeParamMode) {
+    display->drawRect(0,0,128,13,WHITE);
+  } else {
+    display->drawRect(0,13,128,19,WHITE);
+  }
 
-  display.setCursor(4,16);
-  display.setTextSize(2);
-  display.print(String(pg800.paramValue()));
+  pg800.drawParamValue(display);
 
-  if (!changeParamMode)
-  display.drawRect(0,13,128,19,WHITE);
-
-  display.display();
+  display->display();
 }
 
 

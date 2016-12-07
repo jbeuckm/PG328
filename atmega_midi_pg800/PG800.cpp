@@ -1,9 +1,6 @@
 #include "PG800.h"
 #include <avr/pgmspace.h>
 
-#ifndef __PG800__
-#define __PG800__
-
 const char s0[] PROGMEM = "DCO1 Range";
 const char s1[] PROGMEM = "DCO1 Wave";
 const char s2[] PROGMEM = "DCO1 Tune";
@@ -86,10 +83,16 @@ byte paramTypes[48] = {
 
 // these functions have a version for each type of param
 void (*incValueFunction[1])(void);
+void (*decValueFunction[1])(void);
+void (*setValueFunction[1])(unsigned char value);
+void (*drawValueFunction[1])(Adafruit_SSD1306 *display);
 
 PG800::PG800(int ready_pin, int clock_in_pin, int data_out_pin) : paramChanged(48), outBuffer(10) {
   
   incValueFunction[NUMERIC_PARAM] = inc_value_numeric;
+  decValueFunction[NUMERIC_PARAM] = dec_value_numeric;
+  setValueFunction[NUMERIC_PARAM] = set_value_numeric;
+  drawValueFunction[NUMERIC_PARAM] = draw_value_numeric;
 
   READY_PIN = ready_pin;
   CLOCK_IN_PIN = clock_in_pin;
@@ -146,22 +149,19 @@ void PG800::setParam(byte param) {
 }
 
 void PG800::incValue() {
-  incValueFunction[paramTypes[paramIndex]]();
-  
+  incValueFunction[paramTypes[paramIndex]]();  
   paramChanged.setBit(paramIndex, true);
 }
 void PG800::decValue() {
-  if (paramValues[paramIndex] == 0) return;
-  paramValues[paramIndex]--;
-
+  decValueFunction[paramTypes[paramIndex]]();
   paramChanged.setBit(paramIndex, true);
 }
 void PG800::setValue(byte value) {
-  if (value < 0) return;
-  if (value >= 128) return;
-  paramValues[paramIndex] = value;
-
+  setValueFunction[paramTypes[paramIndex]](value);
   paramChanged.setBit(paramIndex, true);
+}
+void PG800::drawParamValue(Adafruit_SSD1306 *display) {
+  drawValueFunction[paramTypes[paramIndex]](display);
 }
 
 
@@ -208,5 +208,4 @@ void PG800::sync() {
 }
 
 
-#endif
 
