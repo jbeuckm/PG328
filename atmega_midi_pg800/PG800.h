@@ -5,6 +5,9 @@
 #define PG800_SYSEX_OFFSET 0x0b
 #define PG800_PARAM_OFFSET 0x80
 
+extern volatile byte paramValues[];
+extern volatile byte paramIndex;
+
 class PG800 {
 
   CompactBoolArray paramChanged;
@@ -17,7 +20,6 @@ class PG800 {
   byte CLOCK_IN_PIN;
   byte DATA_OUT_PIN;
 
-  volatile byte paramIndex;
 
 public:
   PG800(int ready_pin, int clock_in_pin, int data_out_pin);

@@ -1,6 +1,9 @@
 #include "PG800.h"
 #include <avr/pgmspace.h>
 
+#ifndef __PG800__
+#define __PG800__
+
 const char s0[] PROGMEM = "DCO1 Range";
 const char s1[] PROGMEM = "DCO1 Wave";
 const char s2[] PROGMEM = "DCO1 Tune";
@@ -58,7 +61,7 @@ const char* const string_table[] PROGMEM = {
   s40, s41, s42, s43, s44, s45, s46, s47
 };
 
-volatile byte param_values[48] = {
+volatile byte paramValues[48] = {
   63,63,63,63,63,63,63,63,
   63,63,63,63,63,63,63,63,
   63,63,63,63,63,63,63,63,
@@ -66,9 +69,44 @@ volatile byte param_values[48] = {
   63,63,63,63,63,63,63,63,
   63,63,63,63,63,63,63,63
 };
+volatile byte paramIndex;
+
+#define NUMERIC_PARAM 0
+
+byte paramTypes[48] = {
+  NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, 
+  NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, 
+  NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, 
+  NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, 
+  NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, 
+  NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM
+};
+
+#include "ParamTypes.h"
+
+// these functions have a version for each type of param
+void (*incValueFunction[1])(void);
+
+PG800::PG800(int ready_pin, int clock_in_pin, int data_out_pin) : paramChanged(48), outBuffer(10) {
+  
+  incValueFunction[NUMERIC_PARAM] = inc_value_numeric;
+
+  READY_PIN = ready_pin;
+  CLOCK_IN_PIN = clock_in_pin;
+  DATA_OUT_PIN = data_out_pin;
+
+  pinMode(READY_PIN, OUTPUT);
+  digitalWrite(READY_PIN, LOW);
+
+  pinMode(DATA_OUT_PIN, OUTPUT);
+  digitalWrite(DATA_OUT_PIN, LOW);
+
+  pinMode(CLOCK_IN_PIN, INPUT);
+
+  paramIndex = 0;
+}
 
 
-char buffer[20];
 
 int PG800::getParamIndex() {
   return paramIndex;
@@ -79,12 +117,14 @@ void PG800::queueByte(byte newByte) {
   sendQueue[sendQueueLength++] = newByte;
 }
 
+char buffer[20];
+
 char *PG800::paramName() {
   strcpy_P(buffer, (char*)pgm_read_word(&(string_table[paramIndex])));
   return buffer;
 }
 byte PG800::paramValue() {
-  return param_values[paramIndex];
+  return paramValues[paramIndex];
 }
 
 void PG800::nextParam() {
@@ -106,42 +146,25 @@ void PG800::setParam(byte param) {
 }
 
 void PG800::incValue() {
-  if (param_values[paramIndex] == 127) return;
-  param_values[paramIndex]++;
-
+  incValueFunction[paramTypes[paramIndex]]();
+  
   paramChanged.setBit(paramIndex, true);
 }
 void PG800::decValue() {
-  if (param_values[paramIndex] == 0) return;
-  param_values[paramIndex]--;
+  if (paramValues[paramIndex] == 0) return;
+  paramValues[paramIndex]--;
 
   paramChanged.setBit(paramIndex, true);
 }
 void PG800::setValue(byte value) {
   if (value < 0) return;
   if (value >= 128) return;
-  param_values[paramIndex] = value;
+  paramValues[paramIndex] = value;
 
   paramChanged.setBit(paramIndex, true);
 }
 
 
-
-PG800::PG800(int ready_pin, int clock_in_pin, int data_out_pin) : paramChanged(48), outBuffer(10) {
-  READY_PIN = ready_pin;
-  CLOCK_IN_PIN = clock_in_pin;
-  DATA_OUT_PIN = data_out_pin;
-
-  pinMode(READY_PIN, OUTPUT);
-  digitalWrite(READY_PIN, LOW);
-
-  pinMode(DATA_OUT_PIN, OUTPUT);
-  digitalWrite(DATA_OUT_PIN, LOW);
-
-  pinMode(CLOCK_IN_PIN, INPUT);
-
-  paramIndex = 0;
-}
 
 
 void PG800::sendByte(byte data) {
@@ -179,8 +202,11 @@ void PG800::sync() {
   }
   else if ((updatedParamIndex >= 0) && (updatedParamIndex < 48)) {
     outBuffer.push(PG800_PARAM_OFFSET + updatedParamIndex);
-    outBuffer.push(param_values[updatedParamIndex]);
+    outBuffer.push(paramValues[updatedParamIndex]);
     paramChanged.setBit(updatedParamIndex, false);
   }
 }
+
+
+#endif
 
