@@ -108,13 +108,31 @@ void draw_value_xmod(Adafruit_SSD1306 *display) {
 
 
 
+const char eg_mode_string_0[] PROGMEM = "-EG2";
+const char eg_mode_string_1[] PROGMEM = "EG2";
+const char eg_mode_string_2[] PROGMEM = "-EG1";
+const char eg_mode_string_3[] PROGMEM = "EG1";
+const char* const eg_mode_string_table[] PROGMEM = {
+  eg_mode_string_0, eg_mode_string_1, eg_mode_string_2, eg_mode_string_3
+};
 void draw_value_eg_mode(Adafruit_SSD1306 *display) {
-  display->setCursor(4,16);
-  display->setTextSize(2);
-  display->print(String(2));  
-  display->drawLine(29, 29, 43, 15, WHITE);
-  display->drawLine(43, 15, 50, 22, WHITE);
-  display->drawLine(50, 22, 88, 22, WHITE);
-  display->drawLine(88, 22, 95, 29, WHITE);
+
+  draw_value_string_from_table(display, eg_mode_string_table);
+
+  if ((paramValues[paramIndex] / 32) & B00000001) {
+    byte baseX = 57, baseY = 29;
+      
+    display->drawLine(baseX+0, baseY+0, baseX+14, baseY-14, WHITE);
+    display->drawLine(baseX+14, baseY-14, baseX+21, baseY-7, WHITE);
+    display->drawLine(baseX+21, baseY-7, baseX+51, baseY-7, WHITE);
+    display->drawLine(baseX+51, baseY-7, baseX+58, baseY+0, WHITE);
+  } else {
+    byte baseX = 57, baseY = 15;
+      
+    display->drawLine(baseX+0, baseY+0, baseX+14, baseY+14, WHITE);
+    display->drawLine(baseX+14, baseY+14, baseX+21, baseY+7, WHITE);
+    display->drawLine(baseX+21, baseY+7, baseX+51, baseY+7, WHITE);
+    display->drawLine(baseX+51, baseY+7, baseX+58, baseY+0, WHITE);
+  }
 }
 
