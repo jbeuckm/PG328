@@ -68,21 +68,26 @@ volatile byte paramValues[48] = {
 };
 volatile byte paramIndex;
 
-#define PARAM_TYPES_COUNT 6
+#define PARAM_TYPES_COUNT 11
 #define NUMERIC_PARAM 0
 #define FOUR_VALUE_PARAM 1
 #define WAVE_PARAM 2
 #define RANGE_PARAM 3
 #define XMOD_PARAM 4
 #define EG_MODE_PARAM 5
+#define TUNE_PARAM 6
+#define FINE_PARAM 7
+#define VCA_EG_MODE 8
+#define LFO_WAVE 9
+#define CHORUS 10
 
 const byte paramTypes[48] PROGMEM = {
-  RANGE_PARAM, WAVE_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, RANGE_PARAM, WAVE_PARAM, XMOD_PARAM, 
-  NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, 
+  RANGE_PARAM, WAVE_PARAM, TUNE_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, RANGE_PARAM, WAVE_PARAM, XMOD_PARAM, 
+  TUNE_PARAM, FINE_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, 
   EG_MODE_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, EG_MODE_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, 
-  NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, 
-  NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, 
-  NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM
+  NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, EG_MODE_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, 
+  CHORUS, LFO_WAVE, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, 
+  NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, NUMERIC_PARAM, VCA_EG_MODE
 };
 
 #include "ParamTypes.h"
@@ -124,6 +129,32 @@ PG800::PG800(int ready_pin, int clock_in_pin, int data_out_pin) : paramChanged(4
   decValueFunction[EG_MODE_PARAM] = dec_value_4val;
   setValueFunction[EG_MODE_PARAM] = set_value_numeric;
   drawValueFunction[EG_MODE_PARAM] = draw_value_eg_mode;
+
+  incValueFunction[TUNE_PARAM] = inc_value_numeric;
+  decValueFunction[TUNE_PARAM] = dec_value_numeric;
+  setValueFunction[TUNE_PARAM] = set_value_numeric;
+  drawValueFunction[TUNE_PARAM] = draw_value_tune;
+
+  incValueFunction[FINE_PARAM] = inc_value_numeric;
+  decValueFunction[FINE_PARAM] = dec_value_numeric;
+  setValueFunction[FINE_PARAM] = set_value_numeric;
+  drawValueFunction[FINE_PARAM] = draw_value_fine;
+
+  incValueFunction[VCA_EG_MODE] = inc_value_4val;
+  decValueFunction[VCA_EG_MODE] = dec_value_4val;
+  setValueFunction[VCA_EG_MODE] = set_value_numeric;
+  drawValueFunction[VCA_EG_MODE] = draw_value_vca_eg_mode;
+
+  incValueFunction[LFO_WAVE] = inc_value_4val;
+  decValueFunction[LFO_WAVE] = dec_value_4val;
+  setValueFunction[LFO_WAVE] = set_value_numeric;
+  drawValueFunction[LFO_WAVE] = draw_value_lfo_wave;
+
+  incValueFunction[CHORUS] = inc_value_4val;
+  decValueFunction[CHORUS] = dec_value_4val;
+  setValueFunction[CHORUS] = set_value_numeric;
+  drawValueFunction[CHORUS] = draw_value_chorus;
+  
 
   READY_PIN = ready_pin;
   CLOCK_IN_PIN = clock_in_pin;
@@ -224,6 +255,7 @@ void PG800::sendByte(byte data) {
   }
   
   digitalWrite(READY_PIN, LOW);
+  delayMicroseconds(3);
 }
 
 

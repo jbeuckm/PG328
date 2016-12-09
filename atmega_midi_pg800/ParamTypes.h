@@ -19,3 +19,13 @@ void draw_value_range(Adafruit_SSD1306 *display);
 void draw_value_xmod(Adafruit_SSD1306 *display);
 
 void draw_value_eg_mode(Adafruit_SSD1306 *display);
+
+void draw_value_tune(Adafruit_SSD1306 *display);
+void draw_value_fine(Adafruit_SSD1306 *display);
+
+void draw_value_lfo_wave(Adafruit_SSD1306 *display);
+
+void draw_value_vca_eg_mode(Adafruit_SSD1306 *display);
+
+void draw_value_chorus(Adafruit_SSD1306 *display);
+

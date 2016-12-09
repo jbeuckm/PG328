@@ -136,3 +136,60 @@ void draw_value_eg_mode(Adafruit_SSD1306 *display) {
   }
 }
 
+
+void draw_value_tune(Adafruit_SSD1306 *display) {
+  int mappedValue = map(paramValues[paramIndex], 0, 127, -12, 12);
+  display->setCursor(4,16);
+  display->setTextSize(2);
+  display->print(mappedValue);  
+}
+void draw_value_fine(Adafruit_SSD1306 *display) {
+  int mappedValue = map(paramValues[paramIndex], 0, 127, -50, 50);
+  display->setCursor(4,16);
+  display->setTextSize(2);
+  display->print(mappedValue);  
+}
+
+
+const char lfo_wave_string_0[] PROGMEM = "Noise";
+const char lfo_wave_string_1[] PROGMEM = "Square";
+const char lfo_wave_string_2[] PROGMEM = "Sine";
+const char lfo_wave_string_3[] PROGMEM = "Sine";
+const char* const lfo_wave_string_table[] PROGMEM = {
+  lfo_wave_string_0, lfo_wave_string_1, lfo_wave_string_2, lfo_wave_string_3
+};
+
+void draw_value_lfo_wave(Adafruit_SSD1306 *display) {
+  draw_value_string_from_table(display, lfo_wave_string_table);
+}
+
+
+
+const char vca_eg_mode_string_0[] PROGMEM = "Gate";
+const char vca_eg_mode_string_1[] PROGMEM = "Gate";
+const char vca_eg_mode_string_2[] PROGMEM = "EG2";
+const char vca_eg_mode_string_3[] PROGMEM = "EG2";
+const char* const vca_eg_mode_string_table[] PROGMEM = {
+  vca_eg_mode_string_0, vca_eg_mode_string_1, vca_eg_mode_string_2, vca_eg_mode_string_3
+};
+
+void draw_value_vca_eg_mode(Adafruit_SSD1306 *display) {
+  draw_value_string_from_table(display, vca_eg_mode_string_table);
+}
+
+
+
+const char chorus_string_0[] PROGMEM = "Off";
+const char chorus_string_1[] PROGMEM = "Chorus 1";
+const char chorus_string_2[] PROGMEM = "Chorus 2";
+const char chorus_string_3[] PROGMEM = "Chorus 2";
+const char* const chorus_string_table[] PROGMEM = {
+  chorus_string_0, chorus_string_1, chorus_string_2, chorus_string_3
+};
+
+void draw_value_chorus(Adafruit_SSD1306 *display) {
+  draw_value_string_from_table(display, chorus_string_table);
+}
+
+
+
