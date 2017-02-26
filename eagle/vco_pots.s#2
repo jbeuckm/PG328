@@ -943,6 +943,12 @@ Source: http://www.molex.com/pdm_docs/sd/877580616_sd.pdf</description>
 <segment>
 <pinref part="P1" gate="G$2" pin="S"/>
 <wire x1="58.42" y1="55.88" x2="66.04" y2="55.88" width="0.1524" layer="91"/>
+<wire x1="66.04" y1="55.88" x2="66.04" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="66.04" y1="25.4" x2="116.84" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="116.84" y1="25.4" x2="116.84" y2="-10.16" width="0.1524" layer="91"/>
+<pinref part="JP2" gate="A" pin="6"/>
+<wire x1="116.84" y1="-10.16" x2="121.92" y2="-10.16" width="0.1524" layer="91"/>
+<wire x1="121.92" y1="-10.16" x2="121.92" y2="-12.7" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$1" class="0">
@@ -989,6 +995,10 @@ Source: http://www.molex.com/pdm_docs/sd/877580616_sd.pdf</description>
 <segment>
 <pinref part="P3" gate="G$2" pin="S"/>
 <wire x1="93.98" y1="55.88" x2="99.06" y2="55.88" width="0.1524" layer="91"/>
+<wire x1="99.06" y1="55.88" x2="99.06" y2="2.54" width="0.1524" layer="91"/>
+<pinref part="JP2" gate="A" pin="7"/>
+<wire x1="99.06" y1="2.54" x2="119.38" y2="2.54" width="0.1524" layer="91"/>
+<wire x1="119.38" y1="2.54" x2="119.38" y2="-12.7" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$10" class="0">
