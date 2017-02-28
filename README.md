@@ -4,7 +4,25 @@ Program your JX8P/JX10/MKS70 with sliders or MIDI Sysex with this Atmega328 base
 
 A .96" OLED screen shows the status and parameter values and a rotary encoder with momentary push switch provides full PG800 interface capabilities.
 
-Status:
+### MID SYSEX
+
+#### Prefix: 
+
+* 0x41 // manufacturer ID
+* 0x36 // IPR mode
+* 0x01 // device ID
+* 0x24 // (from MKS70)
+* 0x20 // (from MKS70)
+
+#### Suffix:
+
+* 0x01 // Tone
+
+* 0x0F: Reset potentiometer assignments.
+
+### Status:
+
+* 2/24/17: 8-slider pcb tested. This verifies that lots of sliders can work together and will serve as ADSR for EG1 and 2.
 
 * 12/9/16: All Parameters select and display values according to their type. Some even have lil icons...
 
