@@ -661,9 +661,9 @@ design rules under a new name.</description>
 <contactref element="TM4" pad="WIPER"/>
 <contactref element="X1" pad="2"/>
 <wire x1="46.99" y1="5.08" x2="46.99" y2="6.35" width="0.8128" layer="16"/>
-<wire x1="46.99" y1="6.35" x2="45.72" y2="7.62" width="0.8128" layer="16"/>
-<wire x1="45.72" y1="7.62" x2="26.99" y2="7.62" width="0.8128" layer="16"/>
-<wire x1="26.99" y1="7.62" x2="22.07" y2="12.54" width="0.8128" layer="16"/>
+<wire x1="46.99" y1="6.35" x2="45.72" y2="8.255" width="0.8128" layer="16"/>
+<wire x1="45.72" y1="8.255" x2="26.99" y2="8.255" width="0.8128" layer="16"/>
+<wire x1="26.99" y1="8.255" x2="22.07" y2="12.54" width="0.8128" layer="16"/>
 </signal>
 <signal name="N$8">
 <contactref element="TM5" pad="WIPER"/>
