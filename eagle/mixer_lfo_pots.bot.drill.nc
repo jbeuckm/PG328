@@ -4,7 +4,7 @@
 (This file generated from the board:)
 (.../atmega_midi_pg800/eagle/mixer_lfo_pots.brd)
 (Current profile is .../pcb-gcode-3.6.2.4/profiles/mach.pp  )
-(This file generated 3/4/17 1:41 PM)
+(This file generated 3/9/17 2:27 PM)
 (Settings from pcb-machine.h)
 (spindle on time = 0.0000)
 (spindle speed = 20000.0000)
