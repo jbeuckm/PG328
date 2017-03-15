@@ -1632,18 +1632,18 @@
        x="-354"
        y="1005" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m -16,1086 c 165,0 166,0 166,0"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.97251379px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m -7,1086 c 156.05422,0 157,0 157,0"
        id="path7891"
        inkscape:connector-curvature="0" />
     <path
-       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 207,1086 c 165,0 166,0 166,0"
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.96941167px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 207,1086 c 155.06024,0 156,0 156,0"
        id="path7891-0"
        inkscape:connector-curvature="0" />
     <path
-       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.21734452px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 394,1086 c 244.51807,0 246,0 246,0"
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.24184084px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 384,1086 c 254.45783,0 256,0 256,0"
        id="path7891-0-1"
        inkscape:connector-curvature="0" />
     <path
@@ -1657,13 +1657,13 @@
        id="path7891-0-5-1"
        inkscape:connector-curvature="0" />
     <path
-       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.03260112px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 116,1365 c 175.93373,0 177,0 177,0"
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.00600612px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 125,1365 c 166.98795,0 168,0 168,0"
        id="path7891-0-5-14"
        inkscape:connector-curvature="0" />
     <path
-       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.88153756px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 28.5,1605 c 128.22288,0 129,0 129,0"
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.84668028px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 28.5,1605 c 118.28312,0 119,0 119,0"
        id="path7891-0-5-14-9"
        inkscape:connector-curvature="0" />
     <path
@@ -1767,5 +1767,142 @@
          y="1352.7301"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:center;writing-mode:lr-tb;text-anchor:middle"
          id="tspan6738-1-3-8-8-5-5-6">AMPLIFIER</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="722.93225"
+       y="1475.7301"
+       id="text6728-6-0-3-2"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="722.93225"
+         y="1475.7301"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:center;writing-mode:lr-tb;text-anchor:middle"
+         id="tspan6738-1-9-0-6">KEY</tspan><tspan
+         sodipodi:role="line"
+         x="722.93225"
+         y="1485.1051"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:center;writing-mode:lr-tb;text-anchor:middle"
+         id="tspan8160">FOLLOW</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="721.77478"
+       y="1412.9932"
+       id="text6728-6-0-3-2-6"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="721.77478"
+         y="1412.9932"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:center;writing-mode:lr-tb;text-anchor:middle"
+         id="tspan8160-3">ENV 1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="722.81549"
+       y="1550.7552"
+       id="text6728-6-0-3-2-6-7"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="722.81549"
+         y="1550.7552"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:center;writing-mode:lr-tb;text-anchor:middle"
+         id="tspan8160-3-3">ENV 2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="392.729"
+       y="1315.7338"
+       id="text6728-6-9-7-4-0"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="392.729"
+         y="1315.7338"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:center;writing-mode:lr-tb;text-anchor:middle"
+         id="tspan6738-1-3-8-9-7">FREQ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="438.84253"
+       y="1316.7225"
+       id="text6728-6-9-7-4-0-0"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="438.84253"
+         y="1316.7225"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:center;writing-mode:lr-tb;text-anchor:middle"
+         id="tspan6738-1-3-8-9-7-8">RES</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="483.93958"
+       y="1316.7225"
+       id="text6728-6-9-7-4-0-0-1"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="483.93958"
+         y="1316.7225"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:center;writing-mode:lr-tb;text-anchor:middle"
+         id="tspan6738-1-3-8-9-7-8-1">LFO</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="573.74591"
+       y="1316.8287"
+       id="text6728-6-9-7-4-0-0-1-2"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="573.74591"
+         y="1316.8287"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:center;writing-mode:lr-tb;text-anchor:middle"
+         id="tspan6738-1-3-8-9-7-8-1-3">ENV</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="529.57562"
+       y="1316.8287"
+       id="text6728-6-9-7-4-0-0-1-2-2"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="529.57562"
+         y="1316.8287"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:center;writing-mode:lr-tb;text-anchor:middle"
+         id="tspan6738-1-3-8-9-7-8-1-3-9">KEY</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="677.93225"
+       y="1278.9801"
+       id="text6728-67"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="677.93225"
+         y="1278.9801"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:center;writing-mode:lr-tb;text-anchor:middle"
+         id="tspan6738-8">DYNAMICS</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="669.84296"
+       y="1220.3766"
+       id="text6728-67-3"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="669.84296"
+         y="1220.3766"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:center;writing-mode:lr-tb;text-anchor:middle"
+         id="tspan6738-8-4">MODE</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="667.93225"
+       y="1159.7301"
+       id="text6728-67-3-7"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="667.93225"
+         y="1159.7301"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:center;writing-mode:lr-tb;text-anchor:middle"
+         id="tspan6738-8-4-3">HPF</tspan></text>
   </g>
 </svg>
