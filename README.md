@@ -2,7 +2,7 @@
 
 Program your JX8P/JX10/MKS70 with sliders or MIDI Sysex with this Atmega328 based PG800 variation.
 
-A .96" OLED screen shows the status and parameter values and a rotary encoder with momentary push switch provides full PG800 interface capabilities.
+A .96" OLED screen [(buy it here!)](https://amzn.to/4naLiou) shows the status and parameter values and a rotary encoder with momentary push switch provides full PG800 interface capabilities.
 
 ### MID SYSEX
 
